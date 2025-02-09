@@ -7,6 +7,7 @@ import Login from "./pages/Login/Login";
 import Signup from "./pages/Login/Signup";
 import GroupList from "./pages/Dashboard/GroupList";
 import BookList from "./pages/Dashboard/BookList";
+import BookDetail from "./pages/Dashboard/BookDetail";
 import Share from "./pages/Editor/Share";
 import Edit from "./pages/Editor/Edit";
 import ContentView from "./pages/Editor/ContentView";
