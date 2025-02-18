@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from "./UserInfoPage.module.css";
+import DashboardSidebar from "../../components/DashboardSidebar";
 
 function UserInfoPage({ user }) {
     return (

@@ -57,15 +57,20 @@
     margin: 0;
 }
 
-.menu li {
+.menu button {
     width: 100%;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     text-align: center;
-    font-size: 16px;
-    /* color: #CEA595; */
+    font-size: 15px;
+    color: #A07B6A;
+
     cursor: pointer;
     transition: background 0.3s ease;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    background-color: transparent;
 }
 
 .menu li:hover {
