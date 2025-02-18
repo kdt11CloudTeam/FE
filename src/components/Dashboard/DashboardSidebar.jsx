@@ -1,10 +1,10 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
-import logo from "../assets/images/blackLogo.png";
-import userIcon from "../assets/images/userIcon.png";
-import backgroundImage from "../assets/images/DashboardSidebarBG.png"; // 배경 이미지 추가
 import styles from "./DashboardSidebar.module.css";
+
+import logo from "../../assets/images/blackLogo.png";
+import userIcon from "../../assets/images/userIcon.png";
+import backgroundImage from "../../assets/images/DashboardSidebarBG.png"; // 배경 이미지 추가
 
 function DashboardSidebar({ username, userImage }) {
     // 현재 경로를 useLocation으로 가져와서 groups랑 userinfo, /groups/:groupId일 때 각 변수를 true로 설정
