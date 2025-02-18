@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from "./UserInfo.module.css";
+import styles from "./UserInfoPage.module.css";
 
-function UserInfo({ user }) {
+function UserInfoPage({ user }) {
     return (
         <div className={styles.frame}>
         <DashboardSidebar />
@@ -9,3 +9,5 @@ function UserInfo({ user }) {
     </div>
     )
 }
+
+export default UserInfoPage;
