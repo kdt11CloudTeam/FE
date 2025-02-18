@@ -38,3 +38,21 @@ react directory structure
 | pages      | 페이지 jsx 들을 위한 폴더                   |
 | styles     | css style을 정의하기 위한 폴더 (module.css) |
 | .env       | 환경설정을 위한 폴더                        |
+
+---
+
+### 프로젝트 URL 구조
+
+| URL        | 페이지 컴포넌트     |
+|------------|------------------|
+| `/`        | `Onboarding.jsx`   |
+| `/tutorial`   | `Tutorial.jsx`  |
+| `/login` | `Login.jsx` |
+| `/signup` | `Signup.jsx` |
+| `/groups` | `GroupList.jsx` |
+| `/groups/:groupId` | `BookList.jsx` |
+| `/books/:bookId` | `BookDetail.jsx` |
+| `/share` | `Share.jsx` |
+| `/edit` | `Edit.jsx` |
+| `/view` | `ContentView.jsx` |
+
