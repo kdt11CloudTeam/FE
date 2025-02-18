@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.alter:hover, .alter:focus {
+    border: 1px solid #AF8A79;
+    outline: none;
+
+}
+
+.alter {
+    width: 170px;
+    padding: 8px 12px;
+    border: 1px solid #AF8A79;
+    border-radius: 30px;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #AF8A79;
+    font-size: 12px;
+    text-align: center;
+}
+
+.alter::placeholder {
+    color: #AF8A79; 
+    opacity: 1;  
+}
+
+
+.frame {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 900px;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+    scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+    -ms-overflow-style: none; /* IE, Edge에서 스크롤바 숨기기 */
+}
+
+.body::-webkit-scrollbar {
+    display: none;
+    scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+    -ms-overflow-style: none; /* IE, Edge에서 스크롤바 숨기기 */
+}
+
+
+.innerframe {
+    margin: 40px;
+}
+
+.title {
+    margin: 20px;
+}
+
+.section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 15px 0;
+    border-bottom: 1px solid #CEA595; 
+    text-align: left; 
+
+}
+
+.innersection {
+    display: flex;
+    align-items: left; 
+    gap: 10px; 
+}
+
+.innersection p:first-child {
+    width: 120px; 
+    flex-shrink: 0; 
+}
+
+.description {
+    color: #696969;
+    font-size: 13px;;
+    flex-grow: 1; 
+}

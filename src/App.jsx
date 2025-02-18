@@ -7,6 +7,7 @@ import Login from "./pages/Login/Login";
 
 import GroupListPage from "./pages/Dashboard/GroupListPage";
 import BookListPage from "./pages/Dashboard/BookListPage";
+import UserInfoPage from "./pages/Dashboard/UserInfoPage";
 
 import BookDetail from "./pages/Dashboard/BookDetail";
 import Share from "./pages/Editor/Share";
@@ -24,6 +25,7 @@ function App() {
 
                     <Route path="/groups" element={<GroupListPage />} />
                     <Route path="/groups/:groupId" element={<BookListPage />} />
+                    <Route path="/userinfo" element={<UserInfoPage />} />
 
                     <Route path="/books/:bookId" element={<BookDetail />} />
                     <Route path="/share" element={<Share />} />
