@@ -4,9 +4,10 @@ import "./App.css";
 import Onboarding from "./pages/Home/Onboarding";
 import Tutorial from "./pages/Home/Tutorial";
 import Login from "./pages/Login/Login";
-import Signup from "./pages/Login/Signup";
-import GroupList from "./pages/Dashboard/GroupList";
-import BookList from "./pages/Dashboard/BookList";
+
+import GroupListPage from "./pages/Dashboard/GroupListPage";
+import BookListPage from "./pages/Dashboard/BookListPage";
+
 import BookDetail from "./pages/Dashboard/BookDetail";
 import Share from "./pages/Editor/Share";
 import Edit from "./pages/Editor/Edit";
@@ -20,9 +21,10 @@ function App() {
                     <Route path="/" element={<Onboarding />} />
                     <Route path="/tutorial" element={<Tutorial />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<Signup />} />
-                    <Route path="/groups" element={<GroupList />} />
-                    <Route path="/groups/:groupId" element={<BookList />} />
+
+                    <Route path="/groups" element={<GroupListPage />} />
+                    <Route path="/groups/:groupId" element={<BookListPage />} />
+
                     <Route path="/books/:bookId" element={<BookDetail />} />
                     <Route path="/share" element={<Share />} />
                     <Route path="/edit" element={<Edit />} />

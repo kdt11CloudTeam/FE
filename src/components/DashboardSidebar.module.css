@@ -1,0 +1,81 @@
+/* 사이드바 컨테이너 */
+.frame {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    
+    /* 배경 이미지 설정 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.logoContainer {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.logo {
+    width: 60px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.userImage {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin-bottom: 10px;
+}
+
+.username {
+    font-size: 16px;
+    /* font-weight: bold; */
+    color: #444;
+}
+
+.menu {
+    width: 100%;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    font-size: 16px;
+    /* color: #CEA595; */
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.menu li:hover {
+    background: #CEA595;
+    color: white;
+}
+
+/* 활성화된 메뉴 */
+.active {
+    background: #CEA595;
+    color: white;
+    /* font-weight: bold; */
+}
