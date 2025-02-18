@@ -1,26 +1,20 @@
-/* 기본 설정 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-input:focus {
-    outline: none;
-} 
-
-button:focus {
-    outline: none;
-}
-
-.alter:hover {
+.alter:hover, .alter:focus {
     border: 1px solid #AF8A79;
+    outline: none;
+
 }
 
 .alter {
     width: 170px;
     padding: 8px 12px;
     border: 1px solid #AF8A79;
+    border-radius: 30px;
     background-color: white;
     cursor: pointer;
     border-radius: 4px;
