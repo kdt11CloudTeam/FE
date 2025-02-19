@@ -1,7 +1,7 @@
 import styles from "./UserInfo.module.css";
 import React from 'react';
 
-function UserInfo( {user} ) {
+function UserInfo() {
     return (
         <div className={styles.frame}>
             <p className={styles.title}>내 정보</p>

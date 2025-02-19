@@ -3,15 +3,16 @@ import styles from "./UserInfoPage.module.css";
 
 import DashboardSidebar from "../../components/Dashboard/DashboardSidebar";
 import UserInfo from "../../components/Dashboard/UserInfo";
+import groupList from "./mockdata"
 
-function UserInfoPage({ user }) {
+function UserInfoPage() {
     return (
         <div className={styles.frame}>
             <div className={styles.sidebar}>
-                <DashboardSidebar />
+                <DashboardSidebar groupList = {groupList}/>
             </div>
             <div className={styles.userinfo}>
-                <UserInfo user={user} />
+                <UserInfo />
             </div>
         </div>
     );

@@ -1,0 +1,15 @@
+.button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.button > img {
+    width: 180px;
+}
+
+.button > p {
+    font-size: 12px;
+    margin-top: 5px;
+}
