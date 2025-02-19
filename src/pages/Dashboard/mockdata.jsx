@@ -1,4 +1,6 @@
-const groupList =[
+import mockDoc from "../../assets/images/mockDoc.png";
+
+export const groupList =[
     {
         "groupId": "1",
         "title": "겨울에 어울리는 시집",
@@ -31,4 +33,26 @@ const groupList =[
       }
 ]
 
-export default groupList;
+// export default groupList;
+
+
+export const bookList = [
+  {
+    "bookId": "1",
+    "groupId": "1",
+    "title": "겨울에 어울리는 시 1",
+    "coverImage": mockDoc
+  },
+  {
+    "bookId": "2",
+    "groupId": "1",
+    "title": "겨울에 어울리는 시 2",
+    "coverImage": mockDoc
+  },
+  {
+    "bookId": "3",
+    "groupId": "1",
+    "title": "겨울에 어울리는 시 3",
+    "coverImage": mockDoc
+  }
+]
