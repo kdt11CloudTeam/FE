@@ -18,14 +18,9 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Onboarding />} />
 
-<<<<<<< Updated upstream
-                    <Route path="/groups" element={<GroupListPage />} />
-                    <Route path="/groups/:groupId" element={<BookListPage />} />
-=======
 					<Route path="/groups" element={<GroupListPage />} />
 					<Route path="/groups/:groupId" element={<BookListPage />} />
 					<Route path="/userinfo" element={<UserInfoPage />} />
->>>>>>> Stashed changes
 
 					<Route path="/books/:bookId" element={<BookDetail />} />
 					<Route path="/share" element={<Share />} />
