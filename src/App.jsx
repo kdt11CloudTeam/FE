@@ -2,8 +2,6 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Onboarding from "./pages/Home/Onboarding";
-import Tutorial from "./pages/Home/Tutorial";
-import Login from "./pages/Login/Login";
 
 import GroupListPage from "./pages/Dashboard/GroupListPage";
 import BookListPage from "./pages/Dashboard/BookListPage";
@@ -14,25 +12,29 @@ import Edit from "./pages/Editor/Edit";
 import ContentView from "./pages/Editor/ContentView";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <div className="App">
-                <Routes>
-                    <Route path="/" element={<Onboarding />} />
-                    <Route path="/tutorial" element={<Tutorial />} />
-                    <Route path="/login" element={<Login />} />
+	return (
+		<BrowserRouter>
+			<div className="App">
+				<Routes>
+					<Route path="/" element={<Onboarding />} />
 
+<<<<<<< Updated upstream
                     <Route path="/groups" element={<GroupListPage />} />
                     <Route path="/groups/:groupId" element={<BookListPage />} />
+=======
+					<Route path="/groups" element={<GroupListPage />} />
+					<Route path="/groups/:groupId" element={<BookListPage />} />
+					<Route path="/userinfo" element={<UserInfoPage />} />
+>>>>>>> Stashed changes
 
-                    <Route path="/books/:bookId" element={<BookDetail />} />
-                    <Route path="/share" element={<Share />} />
-                    <Route path="/edit" element={<Edit />} />
-                    <Route path="/view" element={<ContentView />} />
-                </Routes>
-            </div>
-        </BrowserRouter>
-    );
+					<Route path="/books/:bookId" element={<BookDetail />} />
+					<Route path="/share" element={<Share />} />
+					<Route path="/edit" element={<Edit />} />
+					<Route path="/view" element={<ContentView />} />
+				</Routes>
+			</div>
+		</BrowserRouter>
+	);
 }
 
 export default App;
