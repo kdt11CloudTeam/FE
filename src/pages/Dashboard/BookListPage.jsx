@@ -8,8 +8,6 @@ import { groupList, bookList } from "./mockdata";
 function BookListPage() {
 
     const { groupId } = useParams(); 
-    // const group = groupList.find(g => g.groupId === groupId); 
-
     const filteredBookList = bookList.filter(book => book.groupId.toString() === groupId);
 
     return (
@@ -19,7 +17,7 @@ function BookListPage() {
             </div>
             <div className={styles.booklist}>
                 <p className={styles.title}>그룹 내 원하는 모아북을 선택해주세요.</p>       
-                <BookList bookList = {filteredBookList}/>
+                <BookList initialBookList = {filteredBookList}/>
             </div>
         </div>
     );

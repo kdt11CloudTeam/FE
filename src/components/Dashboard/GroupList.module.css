@@ -11,6 +11,10 @@
     cursor: pointer;
 }
 
+.button:focus {
+    outline: none;
+}
+
 .button > img {
     width: 180px;
 }

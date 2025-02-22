@@ -1,6 +1,6 @@
 import mockDoc from "../../assets/images/mockDoc.png";
 
-export const groupList =[
+export const groupList =[ // 그룹
     {
         "groupId": "1",
         "title": "겨울에 어울리는 시집",
@@ -33,9 +33,6 @@ export const groupList =[
       }
 ]
 
-// export default groupList;
-
-
 export const bookList = [
   {
     "bookId": "1",
@@ -56,3 +53,12 @@ export const bookList = [
     "coverImage": mockDoc
   }
 ]
+
+export const userData = {
+  "userId": "1",
+  "userName": "홍길동",
+  "userAge": 500,
+  "userInterest": "poem",
+  "userAlarm": true,
+  "userEmail": "minzikx@gmail.com"
+}

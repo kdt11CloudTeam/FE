@@ -11,8 +11,8 @@ function DashboardSidebar({ username, userImage, groupList }) {
     const navigate = useNavigate();
 
     // 현재 경로 확인
-    const isGroup = location.pathname === "/groups";
     const isUserInfo = location.pathname === "/userinfo";
+    const isGroup = location.pathname.startsWith("/groups");
 
     return (
         <div className={styles.frame} style={{ backgroundImage: `url(${backgroundImage})` }}>
@@ -47,15 +47,15 @@ function DashboardSidebar({ username, userImage, groupList }) {
                         그룹
                     </button>
 
-                    {groupList.map((group) => {
+                    {isGroup && groupList.map((group) => {
                         const isActiveGroup = location.pathname === `/groups/${group.groupId}`;
 
                         return (
                             <button 
                                 key={group.groupId}
                                 style={{
-                                    backgroundColor: isActiveGroup ? "#CEA595" : "transparent",
-                                    color: isActiveGroup ? "white" : "#A07B6A"
+                                    backgroundColor: isActiveGroup ? "#CEA595" : "#DFC1B5",
+                                    color: isActiveGroup ? "#835541" : "#FFFFFF"
                                 }}
                                 onClick={() => navigate(`/groups/${group.groupId}`)}
                                 className={styles.groupButton}

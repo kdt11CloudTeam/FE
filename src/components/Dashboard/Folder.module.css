@@ -1,15 +1,66 @@
-.button {
+.frame {
+    position: relative; 
+    width: 200px;       
+    margin: 0 auto;     
+    height: 200px;
+  }
+  
+  .frame :first-child {
+    right: 0;
+    left: auto;
+    top: 5px;
+  }
+  
+  .settingButton {
+    position: absolute;
+    top: 0;            
+    z-index: 2;    
+    
+    background: transparent;
+    cursor: pointer;
+    
+    width: 30px;    
+    border: 1px solid #e0e0e0;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .settingButton img {
+    width: 30px;
+  }
+  
+  .folderButton {
+    position: absolute;
+    top: 0;             
+    left: 0;         
+    z-index: 1;     
+    
+    background: transparent;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .folderButton img {
+    width: 180px;      
+  }
+
+  .folderButton p {
+    font-size: 13px;
+  }
+
+  .button,
+  .folderButton,
+  .settingButton {
     background-color: transparent;
     outline: none;
     border: none;
     cursor: pointer;
-}
-
-.button > img {
-    width: 180px;
-}
-
-.button > p {
-    font-size: 12px;
-    margin-top: 5px;
-}
+  }
+  
+  .button:focus,
+  .folderButton:focus,
+  .settingButton:focus {
+    outline: none;
+    border: none;
+  }
+  

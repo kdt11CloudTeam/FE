@@ -3,7 +3,7 @@ import styles from "./UserInfoPage.module.css";
 
 import DashboardSidebar from "../../components/Dashboard/DashboardSidebar";
 import UserInfo from "../../components/Dashboard/UserInfo";
-import { groupList } from "./mockdata"
+import { groupList, userData } from "./mockdata"
 
 function UserInfoPage() {
     return (
@@ -12,7 +12,7 @@ function UserInfoPage() {
                 <DashboardSidebar groupList = {groupList}/>
             </div>
             <div className={styles.userinfo}>
-                <UserInfo />
+                <UserInfo userData = {userData}/>
             </div>
         </div>
     );

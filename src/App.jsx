@@ -27,7 +27,7 @@ function App() {
                     <Route path="/groups/:groupId" element={<BookListPage />} />
                     <Route path="/userinfo" element={<UserInfoPage />} />
 
-                    <Route path="/books/:bookId" element={<BookDetail />} />
+                    <Route path="/groups/:groupId/books/:bookId" element={<BookDetail />} />  {/* 경로 수정 (앞에 /groups/:groupId 붙임) */}
                     <Route path="/share" element={<Share />} />
                     <Route path="/edit" element={<Edit />} />
                     <Route path="/view" element={<ContentView />} />
