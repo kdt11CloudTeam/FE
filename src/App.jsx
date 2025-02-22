@@ -5,6 +5,7 @@ import Onboarding from "./pages/Home/Onboarding";
 
 import GroupListPage from "./pages/Dashboard/GroupListPage";
 import BookListPage from "./pages/Dashboard/BookListPage";
+import UserInfoPage from "./pages/Dashboard/UserInfoPage";
 
 import BookDetail from "./pages/Dashboard/BookDetail";
 import Share from "./pages/Editor/Share";
