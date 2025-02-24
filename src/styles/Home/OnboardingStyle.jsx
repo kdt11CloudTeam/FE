@@ -21,33 +21,34 @@ export const Logo = styled.img`
 export const Intro = styled.div`
 	display: flex;
 	align-items: center;
+	gap: 68px;
 
-	margin-top: 75px;
+	margin-top: 108px;
 `;
 
 export const IntroText = styled.p`
 	color: #a07b6a;
 	text-align: center;
-	font-size: 22px;
+	font-size: 32px;
 
 	white-space: pre-wrap;
 `;
 
 export const IntroImg = styled.img`
-	width: 650px;
+	width: 910px;
 `;
 
 export const Guide = styled.div`
 	display: flex;
 	flex-direction: column;
 
-	margin-top: 230px;
+	margin-top: 318px;
 `;
 
 export const GuideText = styled.p`
 	color: #a07b6a;
 	text-align: center;
-	font-size: 34px;
+	font-size: 48px;
 `;
 
 export const Login = styled.div`
@@ -62,13 +63,13 @@ export const Login = styled.div`
 export const LoginText = styled.p`
 	color: #fff;
 	text-align: center;
-	font-size: 22px;
+	font-size: 32px;
 
 	white-space: pre-wrap;
 `;
 
 export const KakaoLogin = styled.img`
-	width: 430px;
+	width: 600px;
 `;
 
 export const Footer = styled.div`
@@ -77,7 +78,7 @@ export const Footer = styled.div`
 	flex-wrap: wrap;
 	gap: 50px;
 
-	margin-top: 120px;
+	margin-top: 170px;
 	padding: 20px 0;
 
 	width: 100%;
@@ -88,11 +89,11 @@ export const Footer = styled.div`
 export const FooterGuide = styled.p`
 	color: #fff;
 	text-align: center;
-	font-size: 11px;
+	font-size: 16px;
 `;
 
 export const FooterTeam = styled.p`
 	color: #fff;
 	text-align: center;
-	font-size: 14px;
+	font-size: 20px;
 `;
