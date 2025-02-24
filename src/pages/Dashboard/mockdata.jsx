@@ -51,7 +51,19 @@ export const bookList = [
     "groupId": "1",
     "title": "겨울에 어울리는 시 3",
     "coverImage": mockDoc
-  }
+  },
+  // {
+  //   "bookId": "4",
+  //   "groupId": "1",
+  //   "title": "겨울에 어울리는 시 4",
+  //   "coverImage": mockDoc
+  // },
+  // {
+  //   "bookId": "5",
+  //   "groupId": "1",
+  //   "title": "겨울에 어울리는 시 5",
+  //   "coverImage": mockDoc
+  // }
 ]
 
 export const userData = {

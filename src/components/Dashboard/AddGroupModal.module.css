@@ -8,6 +8,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 5;     
+
 }
 
 .innerFrame {
@@ -67,20 +69,6 @@
     outline-offset: 5px;
 
 }
-
-/* .notificationButton {
-    background: #d4b5a0;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 15px;
-    cursor: pointer;
-    font-size: 14px;
-    color: white;
-}
-
-.notificationButton.active {
-    background: #CEA595;
-} */
 
 .submitButton {
     width: 100%;

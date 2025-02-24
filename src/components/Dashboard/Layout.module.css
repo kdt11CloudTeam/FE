@@ -1,0 +1,22 @@
+.frame {
+    display: flex;
+    width: 100vw; 
+    height: 100vh; 
+    margin: 0;
+}
+
+.sidebar {
+    margin-left: 0;
+    width: 200px;
+    height: 100vh;
+    flex-shrink: 0; 
+}
+
+.children {
+    flex-grow: 1; 
+    height: 100vh;
+    overflow: auto; 
+    display: flex;
+    justify-content: center;
+    background-color: #F6EBE6;
+}

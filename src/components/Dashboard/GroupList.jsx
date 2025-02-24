@@ -10,7 +10,7 @@ function GroupList({ groupList, setGroupList }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const addFolderOnclick = () => {
-        setIsModalOpen(true);
+        setIsModalOpen(true); 
     };
 
     const handleAddGroup = (newGroup) => {
@@ -23,27 +23,31 @@ function GroupList({ groupList, setGroupList }) {
 
     return (
         <div className={styles.frame}>
-            {groupList.map((group) => {
-                const onClick = () => {
-                    navigate(`/groups/${group.groupId}`);
-                };
+            <p>원하는 MoABook을 선택해주세요.</p>
+            <div className={styles.gridFrame}>                
+                {groupList.map((group) => {
+                    const onClick = () => {
+                        navigate(`/groups/${group.groupId}`);
+                    };
 
-                return (
-                    <Folder 
-                        key={group.groupId}  
-                        name={group.title} 
-                        color={group.color} 
-                        onClick={onClick} 
-                    />
-                );
-            })}
-        
-            <button onClick={addFolderOnclick} className={styles.button} aria-label="Add folder">
-                <img src={addFolder} alt="Add Folder" />
-            </button>
+                    return (
+                        <Folder 
+                            key={group.groupId}  
+                            name={group.title} 
+                            color={group.color} 
+                            onClick={onClick} 
+                        />
+                    );
+                })}
+            
+                <button onClick={addFolderOnclick} className={styles.button} aria-label="Add folder">
+                    <img src={addFolder} alt="Add Folder" />
+                </button>
 
-            {isModalOpen && <AddGroupModal onClose={() => setIsModalOpen(false)} onAddGroup={handleAddGroup} />}
+                {isModalOpen && <AddGroupModal onClose={() => setIsModalOpen(false)} onAddGroup={handleAddGroup} />}
+            </div>
         </div>
+        
     );
 }
 

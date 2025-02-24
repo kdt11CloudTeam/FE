@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import style from './BookList.module.css';
+import styles from './BookList.module.css';
 import addBook from "../../assets/images/addBook.png";
 
 function BookList({ initialBookList }) {
@@ -18,21 +18,24 @@ function BookList({ initialBookList }) {
     };
 
     return (
-        <div className={style.frame}>
-            {bookList.map((book) => (
-                <button 
-                    className={style.button} 
-                    key={book.bookId} 
-                    onClick={() => navigate(`/groups/${groupId}/books/${book.bookId}`)}
-                >
-                    <img src={book.coverImage} alt={book.title} />
-                    <p>{book.title}</p> 
+        <div className={styles.frame}>
+            <p>그룹 내 원하는 모아북을 선택해주세요.</p>    
+            <div className={styles.gridFrame}>
+                {bookList.map((book) => (
+                    <button 
+                        className={styles.button} 
+                        key={book.bookId} 
+                        onClick={() => navigate(`/groups/${groupId}/books/${book.bookId}`)}
+                    >
+                        <img src={book.coverImage} alt={book.title} />
+                        <p>{book.title}</p> 
+                    </button>
+                ))}
+                <button className={styles.addBookButton} onClick={handleAddBook}>
+                    <img src={addBook} alt="책 추가" />
+                    <p>추가하기</p>
                 </button>
-            ))}
-            <button className={style.addBookButton} onClick={handleAddBook}>
-                <img src={addBook} alt="책 추가" />
-                <p>추가하기</p>
-            </button>
+            </div>         
         </div>
     );
 }

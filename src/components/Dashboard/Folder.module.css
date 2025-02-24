@@ -1,28 +1,22 @@
 .frame {
     position: relative; 
-    width: 200px;       
+    width: 160px;       
     margin: 0 auto;     
-    height: 200px;
   }
-  
-  .frame :first-child {
-    right: 0;
-    left: auto;
-    top: 5px;
-  }
+
   
   .settingButton {
     position: absolute;
-    top: 0;            
-    z-index: 2;    
-    
+    top: 0;
+    left: 0;     
+
     background: transparent;
     cursor: pointer;
     
-    width: 30px;    
     border: 1px solid #e0e0e0;
     padding: 0;
     margin: 0;
+    margin-bottom: 10px;
   }
   
   .settingButton img {
@@ -31,21 +25,23 @@
   
   .folderButton {
     position: absolute;
-    top: 0;             
+    top: 25px;             
     left: 0;         
-    z-index: 1;     
-    
+
     background: transparent;
     cursor: pointer;
     border: none;
+    
+    padding: 0;
   }
   
   .folderButton img {
-    width: 180px;      
+    width: 160px;
   }
 
   .folderButton p {
     font-size: 13px;
+    margin-top: 5px;
   }
 
   .button,

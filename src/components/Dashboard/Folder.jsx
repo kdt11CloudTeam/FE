@@ -17,26 +17,31 @@ import OrangeSetting from '../../assets/images/folderSetting/orangeSetting.png';
 import PurpleSetting from '../../assets/images/folderSetting/purpleSetting.png';
 import RedSetting from '../../assets/images/folderSetting/redSetting.png';
 
+const folderImages = {
+    blue: blueFolder,
+    green: greenFolder,
+    orange: orangeFolder,
+    purple: purpleFolder,
+    red: redFolder,
+    yellow: yellowFolder
+};
 
+const settingImages = {
+    blue: BlueSetting,
+    green: GreenSetting,
+    orange: OrangeSetting,
+    purple: PurpleSetting,
+    red: RedSetting,
+    yellow: YellowSetting
+};
+
+/**
+ * @param {Object} props
+ * @param {string} props.name
+ * @param {'blue' | 'green'} props.color
+ * @param {() => void} props.onClick
+ */
 function Folder({ name, color, onClick }) {
-    const folderImages = {
-        blue: blueFolder,
-        green: greenFolder,
-        orange: orangeFolder,
-        purple: purpleFolder,
-        red: redFolder,
-        yellow: yellowFolder
-    };
-
-    const settingImages = {
-        blue: BlueSetting,
-        green: GreenSetting,
-        orange: OrangeSetting,
-        purple: PurpleSetting,
-        red: RedSetting,
-        yellow: YellowSetting
-    };
-
     const folderImage = folderImages[color] || yellowFolder;
     const settingImage = settingImages[color] || YellowSetting;
 
