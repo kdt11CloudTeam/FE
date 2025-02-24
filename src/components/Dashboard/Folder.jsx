@@ -10,12 +10,12 @@ import redFolder from '../../assets/images/folder/redFolder.png';
 import yellowFolder from '../../assets/images/folder/yellowFolder.png';
 
 // 폴더 수정/삭제 버튼
-import YellowSetting from '../../assets/images/folderSetting/yellowSetting.png';
-import BlueSetting from '../../assets/images/folderSetting/blueSetting.png';
-import GreenSetting from '../../assets/images/folderSetting/greenSetting.png';      
-import OrangeSetting from '../../assets/images/folderSetting/orangeSetting.png';
-import PurpleSetting from '../../assets/images/folderSetting/purpleSetting.png';
-import RedSetting from '../../assets/images/folderSetting/redSetting.png';
+import YellowSetting from '../../assets/images/folderSetting/YellowSetting.png';
+import BlueSetting from '../../assets/images/folderSetting/BlueSetting.png';
+import GreenSetting from '../../assets/images/folderSetting/GreenSetting.png';      
+import OrangeSetting from '../../assets/images/folderSetting/OrangeSetting.png';
+import PurpleSetting from '../../assets/images/folderSetting/PurpleSetting.png';
+import RedSetting from '../../assets/images/folderSetting/RedSetting.png';
 
 const folderImages = {
     blue: blueFolder,
