@@ -1,0 +1,37 @@
+.frame {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.frame > p {
+    font-size: 18px;
+    text-align: center;
+    margin: 40px;
+}
+
+.gridFrame {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5개 컬럼 */
+    grid-auto-rows: minmax(250px, auto); /* 각 행의 높이 설정 */
+    gap: 2rem; /* 가로 + 세로 간격 적용 */
+    text-align: center;
+}
+
+
+.button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.button:focus {
+    outline: none;
+}
+
+.button > img {
+    width: 160px;
+}
+
+

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import "./App.css";
 import Onboarding from "./pages/Home/Onboarding";
 import Tutorial from "./pages/Home/Tutorial";
@@ -8,6 +8,8 @@ import Login from "./pages/Login/Login";
 import GroupListPage from "./pages/Dashboard/GroupListPage";
 import BookListPage from "./pages/Dashboard/BookListPage";
 import UserInfoPage from "./pages/Dashboard/UserInfoPage";
+import RouteGuard from "./components/Dashboard/RouteGuard";
+import Layout from "./components/Dashboard/Layout";
 
 import BookDetail from "./pages/Dashboard/BookDetail";
 import Share from "./pages/Editor/Share";
@@ -23,11 +25,21 @@ function App() {
                     <Route path="/tutorial" element={<Tutorial />} />
                     <Route path="/login" element={<Login />} />
 
-                    <Route path="/groups" element={<GroupListPage />} />
-                    <Route path="/groups/:groupId" element={<BookListPage />} />
-                    <Route path="/userinfo" element={<UserInfoPage />} />
+                    <Route
+                        element={
+                            <RouteGuard>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </RouteGuard>
+                        }
+                    >
+                        <Route path="/groups" element={<GroupListPage />} />
+                        <Route path="/groups/:groupId" element={<BookListPage />} />
+                        <Route path="/userinfo" element={<UserInfoPage />} />
+                   </Route>
 
-                    <Route path="/books/:bookId" element={<BookDetail />} />
+                    <Route path="/groups/:groupId/books/:bookId" element={<BookDetail />} />  {/* 경로 수정 (앞에 /groups/:groupId 붙임) */}
                     <Route path="/share" element={<Share />} />
                     <Route path="/edit" element={<Edit />} />
                     <Route path="/view" element={<ContentView />} />

@@ -1,0 +1,74 @@
+.frame {
+    display: flex;
+    flex-direction: column;
+}
+
+.frame > p {
+    font-size: 18px;
+    text-align: center;
+    margin: 40px;
+}
+
+.gridFrame {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 15px; 
+    margin-top: 20px;
+}
+
+/* TODO: button과 addBookButton 간의 간격을 통일해야 함 */
+
+.button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease-in-out; 
+    margin: 0;
+}
+
+.addBookButton {
+    background-color: #FFFFFF;
+    width: 190px;
+    height: 250px;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2); 
+    transition: box-shadow 0.3s ease-in-out;
+    border: none;
+    border-radius: 0px;
+    margin-top: 10px;
+}
+
+.button > img {
+    width: 190px;
+    height: 250px;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2); 
+    transition: box-shadow 0.3s ease-in-out;
+    margin: 0;
+
+}
+
+.button:hover > img {
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3); 
+}
+
+.button > p {
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.addBookButton:hover {
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3); 
+}
+
+.addBookButton > img {
+    width: 30px;
+}
+
+.addBookButton > p {
+    color: #565656;
+    font-size: 12px;
+}
