@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as O from "../../styles/Home/OnboardingStyle";
 
 import brownLogo from "../../assets/images/brownLogo.png";
@@ -17,7 +17,18 @@ const LOGIN_TEXT =
 const FOOTER_TEXT =
 	"*모아북에 첨부되는 URL을 비롯한 모든 작성물 내용의 권리는 작성자에게 있으며, 작성자의 동의 없는 무단 배포 및 사용은 금지됩니다.";
 
+const FOOTER_TEXT_SMALL =
+	"*모아북에 첨부되는 URL을 비롯한 모든 작성물 내용의 권리는 작성자에게 있으며,\n작성자의 동의 없는 무단 배포 및 사용은 금지됩니다.";
+
 function Onboarding() {
+	const [isChange, setIsChange] = useState(window.innerWidth > 815);
+
+	useEffect(() => {
+		const handleResize = () => setIsChange(window.innerWidth > 815);
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+
 	return (
 		<O.Container>
 			<O.Background>
@@ -28,16 +39,18 @@ function Onboarding() {
 				</O.Intro>
 				<O.Guide>
 					<O.GuideText>{GUIDE_TEXT}</O.GuideText>
-					<GuideBox index={0} />
-					<GuideBox index={1} />
-					<GuideBox index={2} />
+					<GuideBox index={isChange ? 0 : 4} />
+					<GuideBox index={isChange ? 1 : 5} />
+					<GuideBox index={isChange ? 2 : 6} />
 				</O.Guide>
 				<O.Login>
 					<O.LoginText>{LOGIN_TEXT}</O.LoginText>
 					<O.KakaoLogin src={kakaoLogin} />
 				</O.Login>
 				<O.Footer>
-					<O.FooterGuide>{FOOTER_TEXT}</O.FooterGuide>
+					<O.FooterGuide>
+						{isChange ? FOOTER_TEXT : FOOTER_TEXT_SMALL}
+					</O.FooterGuide>
 					<O.FooterTeam>@KDT_Cloud_Team</O.FooterTeam>
 				</O.Footer>
 			</O.Background>
