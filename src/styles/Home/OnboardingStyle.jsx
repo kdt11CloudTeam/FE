@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-
 	height: 100vh;
 	width: 100vw;
 	max-width: 100%; /* 부모보다 커지지 않도록 설정 */
+`;
+
+export const Background = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
 	background: linear-gradient(180deg, #fff 0%, #bb927f 100%);
 `;

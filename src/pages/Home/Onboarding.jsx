@@ -20,25 +20,27 @@ const FOOTER_TEXT =
 function Onboarding() {
 	return (
 		<O.Container>
-			<O.Logo src={brownLogo} />
-			<O.Intro>
-				<O.IntroText>{INTRO_TEXT}</O.IntroText>
-				<O.IntroImg src={introLaptop} />
-			</O.Intro>
-			<O.Guide>
-				<O.GuideText>{GUIDE_TEXT}</O.GuideText>
-				<GuideBox index={0} />
-				<GuideBox index={1} />
-				<GuideBox index={2} />
-			</O.Guide>
-			<O.Login>
-				<O.LoginText>{LOGIN_TEXT}</O.LoginText>
-				<O.KakaoLogin src={kakaoLogin} />
-			</O.Login>
-			<O.Footer>
-				<O.FooterGuide>{FOOTER_TEXT}</O.FooterGuide>
-				<O.FooterTeam>@KDT_Cloud_Team</O.FooterTeam>
-			</O.Footer>
+			<O.Background>
+				<O.Logo src={brownLogo} />
+				<O.Intro>
+					<O.IntroText>{INTRO_TEXT}</O.IntroText>
+					<O.IntroImg src={introLaptop} />
+				</O.Intro>
+				<O.Guide>
+					<O.GuideText>{GUIDE_TEXT}</O.GuideText>
+					<GuideBox index={0} />
+					<GuideBox index={1} />
+					<GuideBox index={2} />
+				</O.Guide>
+				<O.Login>
+					<O.LoginText>{LOGIN_TEXT}</O.LoginText>
+					<O.KakaoLogin src={kakaoLogin} />
+				</O.Login>
+				<O.Footer>
+					<O.FooterGuide>{FOOTER_TEXT}</O.FooterGuide>
+					<O.FooterTeam>@KDT_Cloud_Team</O.FooterTeam>
+				</O.Footer>
+			</O.Background>
 		</O.Container>
 	);
 }
