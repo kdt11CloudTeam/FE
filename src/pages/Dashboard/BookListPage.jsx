@@ -1,15 +1,22 @@
 import React from "react";
-// 피그마 기준 3번 화면: 생성한 모아북들을 보여주는 화면
+import { useParams } from "react-router-dom";
 import DashboardSidebar from "../../components/Dashboard/DashboardSidebar";
 import styles from "./BookListPage.module.css";
+import BookList from "../../components/Dashboard/BookList";
+import { bookList } from "./mockdata";
 
 function BookListPage() {
+
+    const { groupId } = useParams(); 
+    const filteredBookList = bookList.filter(book => book.groupId.toString() === groupId);
+
     return (
-        <div className={styles.frame}>
-            <DashboardSidebar />
-            <div>BookList</div>
+        <div>
+            <BookList initialBookList = {filteredBookList}/>
         </div>
     );
 }
 
 export default BookListPage;
+
+

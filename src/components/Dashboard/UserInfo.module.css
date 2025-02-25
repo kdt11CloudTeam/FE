@@ -1,39 +1,74 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.frame {
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+}
+
+.frame > p {
+    font-size: 18px;
+    text-align: center;
+    margin: 40px;
+    margin-bottom: 20px;
+}
+
+.innerframe {
+    margin-bottom: 60px;
+}
+
+.section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 15px 0;
+    border-bottom: 1px solid #CEA595; 
+    text-align: left; 
+}
+
+.innersection {
+    display: flex;
+    align-items: left; 
+    gap: 10px; 
+}
+
+.subtitle {
+    font-size: 16px;
+    width: 160px; 
+    flex-shrink: 0; 
+}
+
+.description {
+    color: #696969;
+    font-size: 13px;;
+    flex-grow: 1; 
 }
 
 .alter:hover, .alter:focus {
     border: 1px solid #AF8A79;
+    background-color: #AF8A79;
+    color: #FFFFFF;
     outline: none;
 
 }
 
 .alter {
-    width: 170px;
+    width: 200px;
+    height: 48px;
     padding: 8px 12px;
     border: 1px solid #AF8A79;
-    border-radius: 30px;
+    border-radius: 50px;
     background-color: white;
     cursor: pointer;
-    border-radius: 4px;
     color: #AF8A79;
-    font-size: 12px;
+    font-size: 13px;
     text-align: center;
 }
 
-.alter::placeholder {
+/* TODO: input box의 placeholder 스타일링 적용해야 함 */
+.alter::placeholder, .alter::-webkit-input-placeholder {
     color: #AF8A79; 
     opacity: 1;  
-}
-
-
-.frame {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    width: 900px;
+    font-size: 13px;
+    font-family: 'yoon-gulim-750', system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 *::-webkit-scrollbar {
@@ -46,40 +81,4 @@
     display: none;
     scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
     -ms-overflow-style: none; /* IE, Edge에서 스크롤바 숨기기 */
-}
-
-
-.innerframe {
-    margin: 40px;
-}
-
-.title {
-    margin: 20px;
-}
-
-.section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; 
-    padding: 15px 0;
-    border-bottom: 1px solid #CEA595; 
-    text-align: left; 
-
-}
-
-.innersection {
-    display: flex;
-    align-items: left; 
-    gap: 10px; 
-}
-
-.innersection p:first-child {
-    width: 120px; 
-    flex-shrink: 0; 
-}
-
-.description {
-    color: #696969;
-    font-size: 13px;;
-    flex-grow: 1; 
 }

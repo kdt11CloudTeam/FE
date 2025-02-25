@@ -1,0 +1,62 @@
+.frame {
+    position: relative; 
+    width: 160px;       
+    margin: 0 auto;     
+  }
+
+  
+  .settingButton {
+    position: absolute;
+    top: 0;
+    left: 0;     
+
+    background: transparent;
+    cursor: pointer;
+    
+    border: 1px solid #e0e0e0;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  
+  .settingButton img {
+    width: 30px;
+  }
+  
+  .folderButton {
+    position: absolute;
+    top: 25px;             
+    left: 0;         
+
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    
+    padding: 0;
+  }
+  
+  .folderButton img {
+    width: 160px;
+  }
+
+  .folderButton p {
+    font-size: 13px;
+    margin-top: 5px;
+  }
+
+  .button,
+  .folderButton,
+  .settingButton {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .button:focus,
+  .folderButton:focus,
+  .settingButton:focus {
+    outline: none;
+    border: none;
+  }
+  
