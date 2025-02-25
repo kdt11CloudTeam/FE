@@ -41,8 +41,9 @@ export const IntroImg = styled.img`
 export const Guide = styled.div`
 	display: flex;
 	flex-direction: column;
+	gap: 160px;
 
-	margin-top: 318px;
+	margin: 318px 0 480px 0;
 `;
 
 export const GuideText = styled.p`

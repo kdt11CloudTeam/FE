@@ -1,8 +1,8 @@
 .frame {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 body {
-    background-color: #F6EBE6; /* 전역 설정 */
+	background-color: #f6ebe6; /* 전역 설정 */
 }
