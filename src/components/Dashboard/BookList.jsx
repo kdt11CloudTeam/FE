@@ -14,7 +14,8 @@ function BookList({ initialBookList }) {
         // bookList의 마지막 bookId 가져오기
         const lastBookId = bookList.length > 0 ? bookList[bookList.length - 1].bookId : 0;
         const newBookId = Number(lastBookId) + 1;
-        navigate(`/groups/${groupId}/books/${newBookId}`); // booklist의 마지막 bookId + 1로 이동하도록 수정
+        navigate(`/groups/${groupId}/books/${newBookId}/edit`); // booklist의 마지막 bookId + 1로 이동하도록 수정
+        // /groups/:groupId/books/:bookId/edit
     };
 
     return (
@@ -25,7 +26,7 @@ function BookList({ initialBookList }) {
                     <button 
                         className={styles.button} 
                         key={book.bookId} 
-                        onClick={() => navigate(`/groups/${groupId}/books/${book.bookId}/edit`)} // /groups/:groupId/books/:bookId/edit
+                        onClick={() => navigate(`/groups/${groupId}/books/${book.bookId}`)} 
                     >
                         <img src={book.coverImage} alt={book.title} />
                         <p>{book.title}</p> 
