@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import "./App.css";
 
 import Onboarding from "./pages/Home/Onboarding";
+import Login from "./components/Home/Login";
 
 import GroupListPage from "./pages/Dashboard/GroupListPage";
 import BookListPage from "./pages/Dashboard/BookListPage";
@@ -21,6 +22,10 @@ function App() {
 			<div className="App">
 				<Routes>
 					<Route path="/" element={<Onboarding />} />
+					<Route
+						path="/login/oauth2/code/kakao"
+						element={<Login />}
+					/>
 					<Route
 						element={
 							<RouteGuard>

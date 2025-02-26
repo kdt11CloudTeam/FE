@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
 	display: flex;
-	flex-direction: ${({ isReverse }) => (isReverse ? "row-reverse" : "row")};
+	flex-direction: ${({ $isReverse }) => ($isReverse ? "row-reverse" : "row")};
 	justify-content: space-between;
 	align-items: center;
 
@@ -49,10 +49,10 @@ export const SubContainer = styled.div`
 	flex-direction: column;
 	gap: 46px;
 
-	text-align: ${({ isLeft }) => (isLeft ? "right" : "left")};
+	text-align: ${({ $isLeft }) => ($isLeft ? "right" : "left")};
 
 	@media (max-width: 1020px) {
-		flex-direction: ${({ isLeft }) => (isLeft ? "row-reverse" : "row")};
+		flex-direction: ${({ $isLeft }) => ($isLeft ? "row-reverse" : "row")};
 		align-items: center;
 		gap: 20px;
 	}
