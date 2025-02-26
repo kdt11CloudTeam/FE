@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const Container = styled.div`
 	height: 100vh;
@@ -103,6 +104,8 @@ export const GuideText = styled.p`
 	text-align: center;
 	font-size: 48px;
 
+	white-space: pre-wrap;
+
 	@media (max-width: 1020px) {
 		font-size: 40px;
 	}
@@ -153,8 +156,9 @@ export const LoginText = styled.p`
 	}
 `;
 
-export const KakaoLogin = styled.img`
+export const KakaoLogin = styled(motion.img)`
 	width: 600px;
+	cursor: pointer;
 
 	@media (max-width: 620px) {
 		width: 450px;
