@@ -11,6 +11,8 @@ export const cavus_container = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 1404px;
+    justify-content: center;
 `;
 
 export const page_container = styled.div`
@@ -46,6 +48,10 @@ export const side = styled.div`
 
 export const btn_container = styled.div`
     height: 527px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `;
 
 export const title = styled.div`

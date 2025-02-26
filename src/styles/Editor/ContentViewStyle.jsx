@@ -25,6 +25,8 @@ export const cavus_container = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 1404px;
+    justify-content: center;
 `;
 
 export const page_container = styled.div`
