@@ -15,14 +15,15 @@ function Login() {
 		console.log("카카오 인가 코드:", code);
 
 		if (!code) {
-			console.error("인가 코드가 없습니다.");
+			console.error("인가 코드가 없습니다. 로그인 페이지로 이동합니다.");
 			navigate("/");
 			return;
 		}
 
 		const fetchTokenAndSendToBackend = async () => {
 			try {
-				// Access Token 요청
+				console.log("카카오 Access Token 요청");
+
 				const tokenResponse = await axios.post(
 					"https://kauth.kakao.com/oauth/token",
 					new URLSearchParams({
@@ -40,24 +41,36 @@ function Login() {
 					}
 				);
 
-				if (!tokenResponse.data || !tokenResponse.data.access_token) {
+				console.log("카카오 Access Token 응답:", tokenResponse.data);
+
+				const accessToken = tokenResponse.data.access_token;
+				if (!accessToken) {
 					console.error("Access Token을 받을 수 없습니다.");
 					return;
 				}
 
-				const accessToken = tokenResponse.data.access_token;
+				localStorage.setItem("accessToken", accessToken);
 
-				// Access Token 전달
+				console.log("백엔드로 Access Token 전송");
+
 				const backendResponse = await axios.post(
 					`${BASE_URL}/api/login/kakao`,
 					{ accessToken },
 					{ headers: { "Content-Type": "application/json" } }
 				);
 
-				//  '/groups' 페이지로 이동
+				console.log("백엔드 응답:", backendResponse.data);
+
+				// 성공 시 '/groups' 페이지로 이동
 				navigate("/groups");
 			} catch (error) {
-				console.error("로그인 실패:", error.response?.data || error);
+				console.error("로그인 실패:");
+				if (error.response) {
+					console.error("서버 응답 코드:", error.response.status);
+					console.error("서버 응답 데이터:", error.response.data);
+				} else {
+					console.error("네트워크 오류, 요청 실패:", error.message);
+				}
 				navigate("/");
 			}
 		};
