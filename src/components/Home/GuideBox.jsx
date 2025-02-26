@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import * as G from "../../styles/Home/GuideBoxStyle";
 
 import tripImage from "../../assets/images/guideTrip.png";
@@ -42,6 +43,8 @@ const GUIDE_DATA = [
 function GuideBox({ index }) {
 	const guide = GUIDE_DATA[index] || { title: "", sub: "", imageSrc: "" };
 	const [isChange, setIsChange] = useState(window.innerWidth > 1020);
+	const [isVisible, setIsVisible] = useState(false);
+	const ref = useRef(null);
 
 	useEffect(() => {
 		const handleResize = () => setIsChange(window.innerWidth > 1020);
@@ -49,8 +52,35 @@ function GuideBox({ index }) {
 		return () => window.removeEventListener("resize", handleResize);
 	}, []);
 
+	useEffect(() => {
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				setIsVisible(entry.isIntersecting); // ✅ 보이면 true, 안 보이면 false
+			},
+			{ threshold: 0.5 } // 50% 보이면 트리거
+		);
+
+		if (ref.current) {
+			observer.observe(ref.current);
+		}
+
+		return () => {
+			if (ref.current) {
+				observer.unobserve(ref.current);
+			}
+		};
+	}, []);
+
 	return (
-		<>
+		<motion.div
+			ref={ref}
+			initial={{ opacity: 0, x: index % 2 === 0 ? 100 : -100 }}
+			animate={{
+				opacity: isVisible ? 1 : 0,
+				x: isVisible ? 0 : index % 2 === 0 ? 100 : -100,
+			}}
+			transition={{ duration: 0.8, ease: "easeOut" }}
+		>
 			{isChange ? (
 				<G.Container $isReverse={index % 2 !== 0}>
 					<G.SubContainer $isLeft={index % 2 !== 0}>
@@ -68,7 +98,7 @@ function GuideBox({ index }) {
 					</G.SubContainer>
 				</G.Container>
 			)}
-		</>
+		</motion.div>
 	);
 }
 

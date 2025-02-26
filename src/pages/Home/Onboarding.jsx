@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { motion } from "framer-motion";
 import * as O from "../../styles/Home/OnboardingStyle";
 
 import brownLogo from "../../assets/images/brownLogo.png";
+import SplitText from "../../components/Home/SplitText";
 import introLaptop from "../../assets/images/introLaptop.png";
 import kakaoLogin from "../../assets/images/kakaoLogin.png";
 import GuideBox from "../../components/Home/GuideBox";
@@ -49,14 +49,22 @@ function Onboarding() {
 					<O.IntroImg src={introLaptop} />
 				</O.Intro>
 				<O.Guide>
-					<O.GuideText>{GUIDE_TEXT}</O.GuideText>
+					<O.GuideText>
+						<SplitText text={GUIDE_TEXT} />
+					</O.GuideText>
 					<GuideBox index={isChange ? 0 : 4} />
 					<GuideBox index={isChange ? 1 : 5} />
 					<GuideBox index={isChange ? 2 : 6} />
 				</O.Guide>
 				<O.Login>
 					<O.LoginText>{LOGIN_TEXT}</O.LoginText>
-					<O.KakaoLogin src={kakaoLogin} onClick={handleKakaoLogin} />
+					<O.KakaoLogin
+						src={kakaoLogin}
+						alt="카카오 로그인"
+						onClick={handleKakaoLogin}
+						whileHover={{ scale: 1.1 }}
+						whileTap={{ scale: 0.9 }}
+					/>
 				</O.Login>
 				<O.Footer>
 					<O.FooterGuide>
