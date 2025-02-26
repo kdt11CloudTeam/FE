@@ -15,6 +15,7 @@ import BookDetail from "./pages/Dashboard/BookDetail";
 import Share from "./pages/Editor/Share";
 import Edit from "./pages/Editor/Edit";
 import ContentView from "./pages/Editor/ContentView";
+import ReadonlyView from "./pages/Editor/ReadonlyView";
 
 function App() {
     return (
@@ -59,6 +60,7 @@ function App() {
                         path="/groups/:groupId/books/:bookId/view"
                         element={<ContentView />}
                     />
+                    <Route path="/share/:bookId" element={<ReadonlyView />} />
                 </Routes>
             </div>
         </BrowserRouter>

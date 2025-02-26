@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as T from "../../styles/Components/ToolbarStyle";
 
 import logo from "../../assets/images/whiteLogo.png";
@@ -18,6 +18,7 @@ function Toolbar({
     updateTextStyle,
 }) {
     const navigate = useNavigate();
+    const { groupId, bookId } = useParams();
     const [isHidden, setIsHidden] = useState(false);
 
     const toggleToolbar = () => {
@@ -63,7 +64,11 @@ function Toolbar({
                     <T.page_btn onClick={() => deletePage()}>
                         페이지 삭제
                     </T.page_btn>
-                    <T.page_btn onClick={() => navigate("/view")}>
+                    <T.page_btn
+                        onClick={() =>
+                            navigate(`/groups/${groupId}/books/${bookId}/view`)
+                        }
+                    >
                         페이지 전체 읽기
                     </T.page_btn>
                     <T.page_btn>페이지 저장</T.page_btn>
@@ -115,7 +120,11 @@ function Toolbar({
                             }}
                         />
                     </T.content_btn>
-                    <T.content_btn onClick={() => navigate("/share")}>
+                    <T.content_btn
+                        onClick={() =>
+                            navigate(`/groups/${groupId}/books/${bookId}/share`)
+                        }
+                    >
                         공유하기
                         <T.content_img
                             src={shareicon}

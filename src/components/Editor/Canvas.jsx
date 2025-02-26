@@ -35,18 +35,23 @@ function Canvas({
             );
             return newPages;
         });
-        setSelectedText(id); // 선택된 텍스트 요소 ID 설정
+        setSelectedText(id);
     };
 
     const handleClickOutside = () => {
-        setSelectedText(null); // 텍스트가 아닌 다른 요소 선택 시 초기화
+        setSelectedText(null);
     };
+
+    // 현재 `pageId`가 있는 페이지의 index를 찾기
+    const currentPageIndex = pages.findIndex(
+        (page) => page.pageId === currentPage
+    );
 
     return (
         <C.canvus onClick={handleClickOutside}>
             <C.pagecounter>
                 {pages.length > 0
-                    ? `${pages[currentPage]?.pageId} / ${pages.length}`
+                    ? `${currentPage} / ${pages.length}`
                     : "0 / 0"}
             </C.pagecounter>
             <C.canvus_container>
@@ -54,19 +59,23 @@ function Canvas({
                     src={leftarrow}
                     onClick={(e) => {
                         e.stopPropagation();
-                        currentPage > 0 && setCurrentPage(currentPage - 1);
+                        if (currentPageIndex > 0) {
+                            setCurrentPage(pages[currentPageIndex - 1].pageId);
+                        }
                     }}
                 />
                 <C.page_container ref={pageContainerRef}>
-                    {pages.map((pageElements, index) => (
+                    {pages.map((page) => (
                         <C.page
-                            key={index}
+                            key={page.pageId}
                             style={{
                                 display:
-                                    index === currentPage ? "block" : "none",
+                                    page.pageId === currentPage
+                                        ? "block"
+                                        : "none",
                             }}
                         >
-                            {pageElements.map((element) => (
+                            {page.elements.map((element) => (
                                 <Rnd
                                     key={element.id}
                                     size={{
@@ -84,17 +93,20 @@ function Canvas({
                                     onDragStop={(e, d) => {
                                         setPages((prev) => {
                                             const newPages = [...prev];
-                                            newPages[currentPage] = newPages[
-                                                currentPage
-                                            ].map((item) =>
-                                                item.id === element.id
-                                                    ? {
-                                                          ...item,
-                                                          x: d.x,
-                                                          y: d.y,
-                                                      }
-                                                    : item
-                                            );
+                                            newPages[currentPageIndex] = {
+                                                ...newPages[currentPageIndex],
+                                                elements: newPages[
+                                                    currentPageIndex
+                                                ].elements.map((item) =>
+                                                    item.id === element.id
+                                                        ? {
+                                                              ...item,
+                                                              x: d.x,
+                                                              y: d.y,
+                                                          }
+                                                        : item
+                                                ),
+                                            };
                                             return newPages;
                                         });
                                     }}
@@ -107,24 +119,27 @@ function Canvas({
                                     ) => {
                                         setPages((prev) => {
                                             const newPages = [...prev];
-                                            newPages[currentPage] = newPages[
-                                                currentPage
-                                            ].map((item) =>
-                                                item.id === element.id
-                                                    ? {
-                                                          ...item,
-                                                          width: ref.offsetWidth,
-                                                          height: ref.offsetHeight,
-                                                          x: position.x,
-                                                          y: position.y,
-                                                      }
-                                                    : item
-                                            );
+                                            newPages[currentPageIndex] = {
+                                                ...newPages[currentPageIndex],
+                                                elements: newPages[
+                                                    currentPageIndex
+                                                ].elements.map((item) =>
+                                                    item.id === element.id
+                                                        ? {
+                                                              ...item,
+                                                              width: ref.offsetWidth,
+                                                              height: ref.offsetHeight,
+                                                              x: position.x,
+                                                              y: position.y,
+                                                          }
+                                                        : item
+                                                ),
+                                            };
                                             return newPages;
                                         });
                                     }}
                                     onClick={(e) => {
-                                        e.stopPropagation(); // 부모 이벤트 방지
+                                        e.stopPropagation();
                                         if (element.type === "text") {
                                             setSelectedText(element.id);
                                         } else {
@@ -173,10 +188,11 @@ function Canvas({
                     src={rightarrow}
                     onClick={(e) => {
                         e.stopPropagation();
-                        currentPage < pages.length - 1 &&
-                            setCurrentPage(currentPage + 1);
+                        if (currentPageIndex < pages.length - 1) {
+                            setCurrentPage(pages[currentPageIndex + 1].pageId);
+                        }
                     }}
-                ></C.page_btn>
+                />
             </C.canvus_container>
         </C.canvus>
     );
