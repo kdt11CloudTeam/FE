@@ -61,12 +61,21 @@ function Login() {
 
 				console.log("백엔드 응답:", backendResponse.data);
 
-				const jwtTokenObj = backendResponse.data.data.jwtToken;
-				if (jwtTokenObj && jwtTokenObj.accessToken) {
-					localStorage.setItem("jwtToken", jwtTokenObj.accessToken);
-					console.log("JWT Access Token 저장 완료");
+				const userData = backendResponse.data.data;
+				if (userData) {
+					localStorage.setItem(
+						"jwtToken",
+						userData.jwtToken.accessToken
+					);
+					localStorage.setItem("name", userData.name);
+					localStorage.setItem("email", userData.email);
+					localStorage.setItem(
+						"profile_image_url",
+						userData.profile_image_url
+					);
+					console.log("사용자 정보 저장 완료");
 				} else {
-					console.warn("JWT Access Token 저장 실패");
+					console.warn("사용자 정보 저장 실패");
 				}
 
 				// 성공 시 '/groups' 페이지로 이동
