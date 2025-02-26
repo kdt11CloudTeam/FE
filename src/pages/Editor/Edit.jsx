@@ -1,20 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axiosInstance from "../../axios/axios_instance";
 import Toolbar from "../../components/Editor/Toolbar";
-import Canvus from "../../components/Editor/Canvas";
+import Canvas from "../../components/Editor/Canvas";
 import * as E from "../../styles/Editor/EditStyle";
 
 function Edit() {
-    const [pages, setPages] = useState([[]]);
+    const { bookId } = useParams(); // URL에서 bookId 가져오기
+    const [pages, setPages] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [selectedText, setSelectedText] = useState(null);
 
-    const addPage = () => {
-        const newPages = [...pages, []];
-        setPages(newPages);
-        setCurrentPage(newPages.length - 1);
-        console.log("새로운 페이지 추가됨! 현재 페이지 개수:", newPages.length);
+    // 첫 번째 페이지 생성 (API 연동)
+    useEffect(() => {
+        const createFirstPage = async () => {
+            try {
+                const response = await axiosInstance.post("/page", {
+                    bookId: parseInt(bookId, 10),
+                });
+
+                console.log("첫 번째 페이지 생성 성공:", response.data);
+
+                setPages([{ pageId: response.data.pageId, elements: [] }]); // 응답 받은 pageId 저장
+            } catch (error) {
+                console.error("첫 페이지 생성 중 오류:", error);
+            }
+        };
+
+        createFirstPage();
+    }, [bookId]); // bookId가 바뀔 때마다 실행
+
+    // 페이지 추가 (API 연동)
+    const addPage = async () => {
+        try {
+            const response = await axiosInstance.post("/page", {
+                bookId: parseInt(bookId, 10),
+            });
+
+            console.log("새로운 페이지 추가 성공:", response.data);
+
+            setPages((prevPages) => [
+                ...prevPages,
+                { pageId: response.data.pageId, elements: [] },
+            ]);
+            setCurrentPage(pages.length);
+        } catch (error) {
+            console.error("페이지 추가 중 오류:", error);
+        }
     };
 
+    // 페이지 삭제
     const deletePage = () => {
         if (pages.length > 1) {
             const newPages = pages.filter((_, index) => index !== currentPage);
@@ -26,78 +61,15 @@ function Edit() {
         }
     };
 
-    const addText = () => {
-        const newElement = {
-            id: Date.now(),
-            type: "text",
-            text: "입력하세요",
-            width: 150,
-            height: 50,
-            x: 50,
-            y: 50,
-            fontSize: 10,
-            fontFamily: "pretendard",
-        };
-        setPages((prev) => {
-            const newPages = [...prev];
-            newPages[currentPage] = [...newPages[currentPage], newElement];
-            return newPages;
-        });
-    };
-
-    const addImage = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const newImage = {
-                    id: Date.now(),
-                    type: "image",
-                    src: e.target.result,
-                    width: 150,
-                    height: 150,
-                    x: 50,
-                    y: 50,
-                };
-                setPages((prev) => {
-                    const newPages = [...prev];
-                    newPages[currentPage] = [
-                        ...newPages[currentPage],
-                        newImage,
-                    ];
-                    return newPages;
-                });
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-
-    const updateTextStyle = (property, value) => {
-        if (!selectedText) return;
-
-        setPages((prev) => {
-            const newPages = [...prev];
-            newPages[currentPage] = newPages[currentPage].map((element) =>
-                element.id === selectedText
-                    ? { ...element, [property]: value }
-                    : element
-            );
-            return newPages;
-        });
-    };
-
     return (
         <>
             <E.edit_container>
                 <Toolbar
                     addPage={addPage}
                     deletePage={deletePage}
-                    addText={addText}
-                    addImage={addImage}
                     selectedText={selectedText}
-                    updateTextStyle={updateTextStyle}
                 />
-                <Canvus
+                <Canvas
                     pages={pages}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}

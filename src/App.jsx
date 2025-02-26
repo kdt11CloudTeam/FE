@@ -17,43 +17,52 @@ import Edit from "./pages/Editor/Edit";
 import ContentView from "./pages/Editor/ContentView";
 
 function App() {
-	return (
-		<BrowserRouter>
-			<div className="App">
-				<Routes>
-					<Route path="/" element={<Onboarding />} />
-					<Route
-						path="/login/oauth2/code/kakao"
-						element={<Login />}
-					/>
-					<Route
-						element={
-							<RouteGuard>
-								<Layout>
-									<Outlet />
-								</Layout>
-							</RouteGuard>
-						}
-					>
-						<Route path="/groups" element={<GroupListPage />} />
-						<Route
-							path="/groups/:groupId"
-							element={<BookListPage />}
-						/>
-						<Route path="/userinfo" element={<UserInfoPage />} />
-					</Route>
-					<Route
-						path="/groups/:groupId/books/:bookId"
-						element={<BookDetail />}
-					/>{" "}
-					{/* 경로 수정 (앞에 /groups/:groupId 붙임) */}
-					<Route path="/share" element={<Share />} />
-					<Route path="/edit" element={<Edit />} />
-					<Route path="/view" element={<ContentView />} />
-				</Routes>
-			</div>
-		</BrowserRouter>
-	);
+    return (
+        <BrowserRouter>
+            <div className="App">
+                <Routes>
+                    <Route path="/" element={<Onboarding />} />
+                    <Route
+                        path="/login/oauth2/code/kakao"
+                        element={<Login />}
+                    />
+                    <Route
+                        element={
+                            <RouteGuard>
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </RouteGuard>
+                        }
+                    >
+                        <Route path="/groups" element={<GroupListPage />} />
+                        <Route
+                            path="/groups/:groupId"
+                            element={<BookListPage />}
+                        />
+                        <Route path="/userinfo" element={<UserInfoPage />} />
+                    </Route>
+                    <Route
+                        path="/groups/:groupId/books/:bookId"
+                        element={<BookDetail />}
+                    />{" "}
+                    {/* 경로 수정 (앞에 /groups/:groupId 붙임) */}
+                    <Route
+                        path="/groups/:groupId/books/:bookId/share"
+                        element={<Share />}
+                    />
+                    <Route
+                        path="/groups/:groupId/books/:bookId/edit"
+                        element={<Edit />}
+                    />
+                    <Route
+                        path="/groups/:groupId/books/:bookId/view"
+                        element={<ContentView />}
+                    />
+                </Routes>
+            </div>
+        </BrowserRouter>
+    );
 }
 
 export default App;
