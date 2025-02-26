@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import * as O from "../../styles/Home/OnboardingStyle";
 
 import brownLogo from "../../assets/images/brownLogo.png";
@@ -20,6 +22,9 @@ const FOOTER_TEXT =
 const FOOTER_TEXT_SMALL =
 	"*모아북에 첨부되는 URL을 비롯한 모든 작성물 내용의 권리는 작성자에게 있으며,\n작성자의 동의 없는 무단 배포 및 사용은 금지됩니다.";
 
+const KAKAO_CLIENT_ID = import.meta.env.VITE_KAKAO_REST_API_KEY;
+const REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI;
+
 function Onboarding() {
 	const [isChange, setIsChange] = useState(window.innerWidth > 815);
 
@@ -28,6 +33,12 @@ function Onboarding() {
 		window.addEventListener("resize", handleResize);
 		return () => window.removeEventListener("resize", handleResize);
 	}, []);
+
+	const kakaoAuthURL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
+	const handleKakaoLogin = () => {
+		window.location.href = kakaoAuthURL;
+	};
 
 	return (
 		<O.Container>
@@ -45,7 +56,7 @@ function Onboarding() {
 				</O.Guide>
 				<O.Login>
 					<O.LoginText>{LOGIN_TEXT}</O.LoginText>
-					<O.KakaoLogin src={kakaoLogin} />
+					<O.KakaoLogin src={kakaoLogin} onClick={handleKakaoLogin} />
 				</O.Login>
 				<O.Footer>
 					<O.FooterGuide>

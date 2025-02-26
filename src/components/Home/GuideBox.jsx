@@ -52,17 +52,17 @@ function GuideBox({ index }) {
 	return (
 		<>
 			{isChange ? (
-				<G.Container isReverse={index % 2 !== 0}>
-					<G.SubContainer isLeft={index % 2 !== 0}>
+				<G.Container $isReverse={index % 2 !== 0}>
+					<G.SubContainer $isLeft={index % 2 !== 0}>
 						<G.Title>{guide.title}</G.Title>
 						<G.Sub>{guide.sub}</G.Sub>
 					</G.SubContainer>
 					<G.Image src={guide.imageSrc} alt={guide.title} />
 				</G.Container>
 			) : (
-				<G.Container isReverse={index % 2 !== 0}>
+				<G.Container $isReverse={index % 2 !== 0}>
 					<G.Title>{guide.title}</G.Title>
-					<G.SubContainer isLeft={index % 2 !== 0}>
+					<G.SubContainer $isLeft={index % 2 !== 0}>
 						<G.Sub>{guide.sub}</G.Sub>
 						<G.Image src={guide.imageSrc} alt={guide.title} />
 					</G.SubContainer>
