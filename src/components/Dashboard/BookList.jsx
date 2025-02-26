@@ -25,7 +25,7 @@ function BookList({ initialBookList }) {
                     <button 
                         className={styles.button} 
                         key={book.bookId} 
-                        onClick={() => navigate(`/groups/${groupId}/books/${book.bookId}`)}
+                        onClick={() => navigate(`/groups/${groupId}/books/${book.bookId}/edit`)} // /groups/:groupId/books/:bookId/edit
                     >
                         <img src={book.coverImage} alt={book.title} />
                         <p>{book.title}</p> 
