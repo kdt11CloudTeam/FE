@@ -61,6 +61,14 @@ function Login() {
 
 				console.log("백엔드 응답:", backendResponse.data);
 
+				const jwtTokenObj = backendResponse.data.data.jwtToken;
+				if (jwtTokenObj && jwtTokenObj.accessToken) {
+					localStorage.setItem("jwtToken", jwtTokenObj.accessToken);
+					console.log("JWT Access Token 저장 완료");
+				} else {
+					console.warn("JWT Access Token 저장 실패");
+				}
+
 				// 성공 시 '/groups' 페이지로 이동
 				navigate("/groups");
 			} catch (error) {
