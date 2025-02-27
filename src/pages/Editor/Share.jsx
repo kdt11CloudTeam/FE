@@ -19,14 +19,21 @@ function Share() {
     // 📡 모든 페이지 조회 API 요청
     useEffect(() => {
         const fetchPages = async () => {
+            const parsedBookId = parseInt(bookId, 10);
+
             try {
-                const response = await axiosInstance.get("/page/all", {
-                    params: { bookId: parseInt(bookId, 10) },
+                const response = await axiosInstance.request({
+                    method: "get",
+                    url: "page/all",
+                    data: { bookId: parsedBookId },
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
                 });
 
                 console.log("✅ 페이지 조회 성공:", response.data);
 
-                setPages(response.data); // 페이지 목록 저장
+                setPages(response.data);
             } catch (error) {
                 console.error("❌ 페이지 조회 실패:", error);
             }

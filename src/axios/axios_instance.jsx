@@ -14,7 +14,7 @@ axiosInstance.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem("jwtToken"); // JWT 토큰 가져오기
         if (token) {
-            config.headers.Authorization = token; // Bearer 추가
+            config.headers.Authorization = `Bearer ${token}`; // Bearer 추가
         } else {
             console.warn("🚨 토큰이 없습니다. 로그인 상태를 확인하세요.");
         }

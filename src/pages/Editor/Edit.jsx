@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axiosInstance from "../../axios/axios_instance";
+
 import Toolbar from "../../components/Editor/Toolbar";
 import Canvas from "../../components/Editor/Canvas";
 import * as E from "../../styles/Editor/EditStyle";
@@ -14,17 +15,24 @@ function Edit() {
     // 첫 번째 페이지 생성 (API 연동)
     useEffect(() => {
         const createFirstPage = async () => {
-            console.log(localStorage.getItem("jwtToken"));
-            try {
-                const response = await axiosInstance.post("/page", {
-                    bookId: parseInt(bookId, 10),
-                });
+            const parsedBookId = parseInt(bookId, 10); // bookId 숫자로 변환
 
-                console.log("첫 번째 페이지 생성 성공:", response.data);
+            try {
+                const response = await axiosInstance.post(
+                    "page", // ✅ URL 수정 (슬래시 추가)
+                    { bookId: parsedBookId }, // ✅ Body에 bookId 포함
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    }
+                );
+
+                console.log("✅ 첫 번째 페이지 생성 성공:", response.data);
 
                 setPages([{ pageId: response.data.pageId, elements: [] }]); // 응답 받은 pageId 저장
             } catch (error) {
-                console.error("첫 페이지 생성 중 오류:", error);
+                console.error("❌ 첫 페이지 생성 중 오류:", error);
             }
         };
 
