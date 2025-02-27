@@ -33,12 +33,12 @@ function GroupList({ groupList, setGroupList }) {
 
                     return (
                         <Folder 
-    key={group.groupId}  
-    groupId={group.groupId} // 🔥 명확하게 groupId 전달
-    name={group.name} 
-    color={group.color} 
-    onClick={onClick} 
-/>
+                            key={group.groupId}  
+                            groupId={group.groupId} 
+                            name={group.name} 
+                            color={group.color} 
+                            onClick={onClick} 
+                        />
 
                     );
                 })}
