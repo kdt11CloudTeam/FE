@@ -95,3 +95,24 @@
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
 }
+
+.deleteButton {
+    border-radius: 50px;
+    background-color: transparent;
+    outline: 1px solid #AF8A79;
+    color: #CEA595;
+}
+
+.deleteButton:hover {
+    background-color: transparent;
+    color: #FFFFFF;
+    background: #CEA595;
+    border: none;
+}
+
+.deleteText {
+    font-size: 9px;
+    color: #CEA595;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
