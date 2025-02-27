@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const formattedURL = `${import.meta.env.VITE_BACK_BASE_URL}`;
 
 const axiosInstance = axios.create({

@@ -18,21 +18,21 @@ import PurpleSetting from '../../assets/images/folderSetting/PurpleSetting.png';
 import RedSetting from '../../assets/images/folderSetting/RedSetting.png';
 
 const folderImages = {
-    blue: blueFolder,
-    green: greenFolder,
-    orange: orangeFolder,
-    purple: purpleFolder,
-    red: redFolder,
-    yellow: yellowFolder
+    Blue: blueFolder,
+    Green: greenFolder,
+    Orange: orangeFolder,
+    Purple: purpleFolder,
+    Red: redFolder,
+    Yellow: yellowFolder
 };
 
 const settingImages = {
-    blue: BlueSetting,
-    green: GreenSetting,
-    orange: OrangeSetting,
-    purple: PurpleSetting,
-    red: RedSetting,
-    yellow: YellowSetting
+    Blue: BlueSetting,
+    Green: GreenSetting,
+    Orange: OrangeSetting,
+    Purple: PurpleSetting,
+    Red: RedSetting,
+    Yellow: YellowSetting
 };
 
 /**
