@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Rnd } from "react-rnd";
 import * as C from "../../styles/Components/CanvusStyle";
 
@@ -15,69 +15,98 @@ function Canvas({
 }) {
     const pageContainerRef = useRef(null);
 
+    useEffect(() => {
+        console.log("📌 현재 페이지 Index:", currentPage);
+        console.log(
+            "📌 전체 페이지 리스트:",
+            pages.map((p) => p.pageId)
+        );
+    }, [currentPage, pages]);
+
     const handleTextChange = (id, newText) => {
-        setPages((prev) => {
-            const newPages = [...prev];
-            newPages[currentPage] = newPages[currentPage].map((element) =>
-                element.id === id ? { ...element, text: newText } : element
-            );
-            return newPages;
-        });
+        setPages((prev) =>
+            prev.map((page, index) =>
+                index === currentPage
+                    ? {
+                          ...page,
+                          elements: page.elements.map((element) =>
+                              element.id === id
+                                  ? { ...element, text: newText }
+                                  : element
+                          ),
+                      }
+                    : page
+            )
+        );
     };
 
     const handleFocus = (id) => {
         setPages((prev) => {
-            const newPages = [...prev];
-            newPages[currentPage] = newPages[currentPage].map((element) =>
-                element.id === id && element.text === "입력하세요"
-                    ? { ...element, text: "" }
-                    : element
+            return prev.map((page, index) =>
+                index === currentPage
+                    ? {
+                          ...page,
+                          elements: page.elements.map((element) =>
+                              element.id === id && element.text === "입력하세요"
+                                  ? { ...element, text: "" }
+                                  : element
+                          ),
+                      }
+                    : page
             );
-            return newPages;
         });
-        setSelectedText(id);
+
+        // ✅ 선택된 텍스트 요소의 전체 객체 저장
+        const selectedElement = pages[currentPage]?.elements.find(
+            (element) => element.id === id
+        );
+
+        if (selectedElement) {
+            setSelectedText(selectedElement);
+        }
     };
 
     const handleClickOutside = () => {
-        setSelectedText(null);
+        setSelectedText(null); // ✅ 텍스트가 아닌 다른 곳 클릭 시 초기화
     };
-
-    // 현재 `pageId`가 있는 페이지의 index를 찾기
-    const currentPageIndex = pages.findIndex(
-        (page) => page.pageId === currentPage
-    );
 
     return (
         <C.canvus onClick={handleClickOutside}>
             <C.pagecounter>
                 {pages.length > 0
-                    ? `${currentPage} / ${pages.length}`
+                    ? `${currentPage + 1} / ${pages.length}`
                     : "0 / 0"}
             </C.pagecounter>
+
             <C.canvus_container>
+                {/* ◀️ 이전 페이지 버튼 */}
                 <C.page_btn
                     src={leftarrow}
                     onClick={(e) => {
                         e.stopPropagation();
-                        if (currentPageIndex > 0) {
-                            setCurrentPage(pages[currentPageIndex - 1].pageId);
+                        if (currentPage > 0) {
+                            setCurrentPage(currentPage - 1);
                         }
                     }}
+                    style={{
+                        opacity: currentPage === 0 ? 0.3 : 1,
+                        cursor: currentPage === 0 ? "default" : "pointer",
+                    }}
                 />
+
                 <C.page_container ref={pageContainerRef}>
-                    {pages.map((page) => (
+                    {pages.map((page, index) => (
                         <C.page
-                            key={page.pageId}
+                            key={page.pageId || `page-${index}`}
                             style={{
                                 display:
-                                    page.pageId === currentPage
-                                        ? "block"
-                                        : "none",
+                                    index === currentPage ? "block" : "none",
+                                backgroundColor: "#fff",
                             }}
                         >
-                            {page.elements.map((element) => (
+                            {page.elements.map((element, idx) => (
                                 <Rnd
-                                    key={element.id}
+                                    key={element.id || `element-${idx}`}
                                     size={{
                                         width: element.width,
                                         height: element.height,
@@ -90,58 +119,10 @@ function Canvas({
                                         left: false,
                                     }}
                                     bounds="parent"
-                                    onDragStop={(e, d) => {
-                                        setPages((prev) => {
-                                            const newPages = [...prev];
-                                            newPages[currentPageIndex] = {
-                                                ...newPages[currentPageIndex],
-                                                elements: newPages[
-                                                    currentPageIndex
-                                                ].elements.map((item) =>
-                                                    item.id === element.id
-                                                        ? {
-                                                              ...item,
-                                                              x: d.x,
-                                                              y: d.y,
-                                                          }
-                                                        : item
-                                                ),
-                                            };
-                                            return newPages;
-                                        });
-                                    }}
-                                    onResizeStop={(
-                                        e,
-                                        direction,
-                                        ref,
-                                        delta,
-                                        position
-                                    ) => {
-                                        setPages((prev) => {
-                                            const newPages = [...prev];
-                                            newPages[currentPageIndex] = {
-                                                ...newPages[currentPageIndex],
-                                                elements: newPages[
-                                                    currentPageIndex
-                                                ].elements.map((item) =>
-                                                    item.id === element.id
-                                                        ? {
-                                                              ...item,
-                                                              width: ref.offsetWidth,
-                                                              height: ref.offsetHeight,
-                                                              x: position.x,
-                                                              y: position.y,
-                                                          }
-                                                        : item
-                                                ),
-                                            };
-                                            return newPages;
-                                        });
-                                    }}
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         if (element.type === "text") {
-                                            setSelectedText(element.id);
+                                            handleFocus(element.id); // ✅ `handleFocus` 적용
                                         } else {
                                             setSelectedText(null);
                                         }
@@ -184,13 +165,22 @@ function Canvas({
                         </C.page>
                     ))}
                 </C.page_container>
+
+                {/* ▶️ 다음 페이지 버튼 */}
                 <C.page_btn
                     src={rightarrow}
                     onClick={(e) => {
                         e.stopPropagation();
-                        if (currentPageIndex < pages.length - 1) {
-                            setCurrentPage(pages[currentPageIndex + 1].pageId);
+                        if (currentPage < pages.length - 1) {
+                            setCurrentPage(currentPage + 1);
                         }
+                    }}
+                    style={{
+                        opacity: currentPage >= pages.length - 1 ? 0.3 : 1,
+                        cursor:
+                            currentPage >= pages.length - 1
+                                ? "default"
+                                : "pointer",
                     }}
                 />
             </C.canvus_container>

@@ -16,6 +16,7 @@ function Toolbar({
     addImage,
     selectedText,
     updateTextStyle,
+    savePage,
 }) {
     const navigate = useNavigate();
     const { groupId, bookId } = useParams();
@@ -71,7 +72,9 @@ function Toolbar({
                     >
                         페이지 전체 읽기
                     </T.page_btn>
-                    <T.page_btn>페이지 저장</T.page_btn>
+                    <T.page_btn onClick={() => savePage()}>
+                        페이지 저장
+                    </T.page_btn>
                 </T.page_controls>
                 {/* 구분선 */}
                 <T.toolbar_line />
