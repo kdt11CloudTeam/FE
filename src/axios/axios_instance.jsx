@@ -12,7 +12,7 @@ const axiosInstance = axios.create({
 // 요청 인터셉터 설정: 모든 요청에 Authorization header 추가
 axiosInstance.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem("token"); // local storage에서 token 가져오기
+        const token = localStorage.getItem("jwtToken"); // local storage에서 token 가져오기
         if (token) {
             config.headers.Authorization = token; // Bearer 삭제 (401 에러 해결용)
         } else {
