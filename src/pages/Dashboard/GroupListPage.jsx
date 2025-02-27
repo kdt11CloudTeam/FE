@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import GroupList from "../../components/Dashboard/GroupList";
-import { groupList } from "./mockdata"; 
 import axiosInstance from '../../axios/axios_instance';
 
 function GroupListPage() {
-    const [currentGroupList, setGroupList] = useState(groupList);
+    const [currentGroupList, setGroupList] = useState([]);
 
     // 그룹 데이터 가져오는 함수
     const getGroups = async () => {
@@ -12,7 +11,7 @@ function GroupListPage() {
             const response = await axiosInstance.get('/group');
             
             if (response.status === 200) {
-                console.log('그룹 조회를 성공하였습니다.', response.data);
+                console.log('그룹 조회를 성공하였습니다.', response.data.data.groups);
                 setGroupList(response.data.data.groups); 
             }
         } catch (error) {

@@ -33,7 +33,7 @@ function GroupList({ groupList, setGroupList }) {
                     return (
                         <Folder 
                             key={group.groupId}  
-                            name={group.title} 
+                            name={group.name} 
                             color={group.color} 
                             onClick={onClick} 
                         />
