@@ -9,7 +9,7 @@ import purpleFolder from '../../assets/images/folder/purpleFolder.png';
 import redFolder from '../../assets/images/folder/redFolder.png';
 import yellowFolder from '../../assets/images/folder/yellowFolder.png';
 
-// 폴더 수정/삭제 버튼
+// 폴더 수정/삭제 버
 import YellowSetting from '../../assets/images/folderSetting/YellowSetting.png';
 import BlueSetting from '../../assets/images/folderSetting/BlueSetting.png';
 import GreenSetting from '../../assets/images/folderSetting/GreenSetting.png';      
