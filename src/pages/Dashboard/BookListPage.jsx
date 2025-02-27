@@ -12,8 +12,9 @@ function BookListPage() {
         try {
             const response = await axiosInstance.request({
                 method: "get", 
-                url: "/book",
-                data: { groupId: 1 }, // 비공식: GET 요청의 Body에 데이터 포함
+                url: `/book/${groupId}`,
+                // url: "/book/1"
+                // data: { groupId: 1 }, // 비공식: GET 요청의 Body에 데이터 포함
                 // params: { groupId: 0 }, // GET 요청에서는 params 사용
 
             });
