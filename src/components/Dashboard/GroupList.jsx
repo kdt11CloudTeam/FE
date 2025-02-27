@@ -15,12 +15,13 @@ function GroupList({ groupList, setGroupList }) {
 
     const handleAddGroup = (newGroup) => {
         const updatedGroupList = [...groupList, { 
-            ...newGroup,
+            name: newGroup.title, 
+            color: newGroup.color,
             groupId: groupList.length + 1
         }];
         setGroupList(updatedGroupList); 
     };
-
+    
     return (
         <div className={styles.frame}>
             <p>원하는 MoABook을 선택해주세요.</p>
@@ -33,7 +34,7 @@ function GroupList({ groupList, setGroupList }) {
                     return (
                         <Folder 
                             key={group.groupId}  
-                            name={group.title} 
+                            name={group.name} 
                             color={group.color} 
                             onClick={onClick} 
                         />

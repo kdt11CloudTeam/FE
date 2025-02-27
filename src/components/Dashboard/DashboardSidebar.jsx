@@ -60,7 +60,7 @@ function DashboardSidebar({ username, userImage, groupList }) {
                                 onClick={() => navigate(`/groups/${group.groupId}`)}
                                 className={styles.groupButton}
                             >
-                                <p>{group.title}</p>
+                                <p>{group.name}</p>
                             </button>
                         );
                     })}

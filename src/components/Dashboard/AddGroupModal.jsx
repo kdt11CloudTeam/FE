@@ -1,27 +1,39 @@
 import React, { useState } from 'react';
 import styles from './AddGroupModal.module.css';
+import axiosInstance from '../../axios/axios_instance'; 
 
 function AddGroupModal({ onClose, onAddGroup }) {
     const [title, setTitle] = useState('');
     const [color, setColor] = useState('#F4C28F'); 
 
-    // HEX 코드와 색상 이름 매핑
-    const colorMap = {
-        '#FFCACA': 'red',
-        '#F9F0CF': 'yellow',
-        '#FFCFA5': 'orange',
-        '#C5F1B8': 'green',
-        '#BAE0EB': 'blue',
-        '#C9C8F4': 'purple'
+
+        const colorMap = {
+        '#FFCACA': 'Red',
+        '#F9F0CF': 'Yellow',
+        '#FFCFA5': 'Orange',
+        '#C5F1B8': 'Green',
+        '#BAE0EB': 'Blue',
+        '#C9C8F4': 'Purple'
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (title.trim() === '') return; 
 
-        const colorName = colorMap[color] || 'unknown';
+        const colorName = colorMap[color] || 'Yellow';
 
-        onAddGroup({ title, color: colorName }); 
-        onClose(); 
+        try {
+            const response = await axiosInstance.post('/group', {  
+                name: title,
+                color: colorName
+            });
+
+            console.log('그룹 생성 성공:', response.data);  
+
+            onAddGroup({ title, color: colorName });
+            onClose();
+        } catch (error) {
+            console.error('에러 발생:', error.response ? error.response.data : error.message);
+        }
     };
 
     return (
@@ -39,7 +51,7 @@ function AddGroupModal({ onClose, onAddGroup }) {
 
                     <p className={styles.title}>색상 변경</p>
                     <div className={styles.colorPicker}>
-                        {['#FFCACA', '#F9F0CF', '#FFCFA5', '#C5F1B8', '#BAE0EB', '#C9C8F4'].map((c) => (
+                        {Object.keys(colorMap).map((c) => (
                             <button 
                                 key={c} 
                                 className={`${styles.colorButton} ${color === c ? styles.selected : ''}`} 
