@@ -11,9 +11,8 @@ import UserInfoPage from "./pages/Dashboard/UserInfoPage";
 import RouteGuard from "./components/Dashboard/RouteGuard";
 import Layout from "./components/Dashboard/Layout";
 
-import BookDetail from "./pages/Dashboard/BookDetail";
+import BookDetail from "./pages/Dashboard/BookDetail.jsx";
 import Share from "./pages/Editor/Share";
-import Edit from "./pages/Editor/Edit";
 import ContentView from "./pages/Editor/ContentView";
 import ReadonlyView from "./pages/Editor/ReadonlyView";
 
@@ -42,7 +41,10 @@ function App() {
             path="/groups/:groupId/books/:bookId/share"
             element={<Share />}
           />
-          <Route path="/groups/:groupId/books/:bookId" element={<Edit />} />
+          <Route
+            path="/groups/:groupId/books/:bookId"
+            element={<BookDetail />}
+          />
           <Route
             path="/groups/:groupId/books/:bookId/view"
             element={<ContentView />}
