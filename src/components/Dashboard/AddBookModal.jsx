@@ -3,7 +3,7 @@ import styles from "./AddGroupModal.module.css";
 import axiosInstance from "../../axios/axios_instance";
 import { useParams } from "react-router-dom";
 
-function AddBookModal({ onClose }) {
+function AddBookModal({ onClose, onAddBook }) {
   const [title, setTitle] = useState("");
   const { groupId } = useParams();
   console.log(groupId);
@@ -19,6 +19,7 @@ function AddBookModal({ onClose }) {
 
       console.log("그룹 생성 성공:", response.data);
 
+      onAddBook({ title });
       onClose();
     } catch (error) {
       console.error(

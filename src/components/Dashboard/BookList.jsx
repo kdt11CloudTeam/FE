@@ -5,21 +5,25 @@ import AddBookModal from "./AddBookModal";
 import addBook from "../../assets/images/addBook.png";
 import mockDoc from "../../assets/images/mockDoc.png";
 
-function BookList({ initialBookList }) {
+function BookList({ bookList, setBookList }) {
   const navigate = useNavigate();
   const { groupId } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // bookList를 useState로 관리하고, initialBookList가 변경될 때 업데이트
-  const [bookList, setBookList] = useState(initialBookList || []);
-
-  useEffect(() => {
-    setBookList(initialBookList);
-  }, [initialBookList]);
-
   // 새로운 책 추가 버튼 클릭 시 동작
   const addBookOnclick = () => {
     setIsModalOpen(true);
+  };
+
+  const handleAddBook = (newBook) => {
+    const updatedBootList = [
+      ...bookList,
+      {
+        name: newBook.title,
+        bookId: bookList.length + 1,
+      },
+    ];
+    setBookList(updatedBootList);
   };
 
   return (
@@ -40,7 +44,12 @@ function BookList({ initialBookList }) {
           <img src={addBook} alt="책 추가" />
           <p>추가하기</p>
         </button>
-        {isModalOpen && <AddBookModal onClose={() => setIsModalOpen(false)} />}
+        {isModalOpen && (
+          <AddBookModal
+            onClose={() => setIsModalOpen(false)}
+            onAddBook={handleAddBook}
+          />
+        )}
       </div>
     </div>
   );
