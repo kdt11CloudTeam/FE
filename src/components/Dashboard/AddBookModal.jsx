@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import styles from "./AddGroupModal.module.css";
 import axiosInstance from "../../axios/axios_instance";
+import { useParams } from "react-router-dom";
 
-function AddBookModal({ onClose, groupId }) {
+function AddBookModal({ onClose }) {
   const [title, setTitle] = useState("");
+  const { groupId } = useParams();
+  console.log(groupId);
 
   const handleSubmit = async () => {
     if (title.trim() === "") return;
@@ -29,7 +32,7 @@ function AddBookModal({ onClose, groupId }) {
     <div className={styles.frame}>
       <div className={styles.innerFrame}>
         <div className={styles.paddingFrame}>
-          <p>생성하고자 하는 폴더의 제목을 적어주세요.</p>
+          <p>생성하고자 하는 책의 제목을 적어주세요.</p>
           <input
             type="text"
             placeholder="제목 입력"

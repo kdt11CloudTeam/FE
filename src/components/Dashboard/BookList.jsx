@@ -40,12 +40,7 @@ function BookList({ initialBookList }) {
           <img src={addBook} alt="책 추가" />
           <p>추가하기</p>
         </button>
-        {isModalOpen && (
-          <AddBookModal
-            onClose={() => setIsModalOpen(false)}
-            selectGroup={groupId}
-          />
-        )}
+        {isModalOpen && <AddBookModal onClose={() => setIsModalOpen(false)} />}
       </div>
     </div>
   );
