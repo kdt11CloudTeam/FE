@@ -11,17 +11,32 @@ function BookDetail() {
   const [pages, setPages] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedText, setSelectedText] = useState(null);
+  const [loading, setLoading] = useState(true); // 로딩 상태 추가
 
   // 페이지 조회
   useEffect(async () => {
-    const response = await axiosInstance.get(`/${bookId}/page/all`);
-    setPages(response.data.data.pages);
-    setCurrentPage(response.data.data.pages[0].pageNumber);
+    try {
+      const response = await axiosInstance.get(`/${bookId}/page/all`);
+      const pagesData = response.data.data.pages;
 
-    if(response.data.data.pages === null){
-        const response = await axiosInstance.post(`/${bookId}/page`);
-        setPages([{ pageId: response.data.data.pageId, pageNumber: response.data.data.pageNumber, elements: [] }]);
-        setCurrentPage(response.data.data.pageNumber);
+      if (pagesData && pagesData.length > 0) {
+        setPages(pagesData);
+        setCurrentPage(pagesData[0].pageNumber); // 첫 번째 페이지로 설정
+      } else {
+        // 페이지가 없으면 새 페이지 생성
+        const newPageResponse = await axiosInstance.post(`/${bookId}/page`);
+        const newPage = newPageResponse.data.data;
+        setPages([{
+          pageId: newPage.pageId,
+          pageNumber: newPage.pageNumber,
+          elements: []
+        }]);
+        setCurrentPage(newPage.pageNumber);  // 새로 생성된 페이지 번호로 설정
+      }
+    } catch (error) {
+      console.error("페이지 조회 중 오류:", error);
+    } finally {
+      setLoading(false); // 로딩 완료
     }
   }, []);
 
@@ -170,25 +185,29 @@ function BookDetail() {
 
   return (
     <>
-      <E.edit_container>
-        <Toolbar
-          addPage={addPage}
-          deletePage={deletePage}
-          selectedText={selectedText}
-          addText={addText}
-          addImage={addImage}
-          updateTextStyle={updateTextStyle}
-          savePage={savePage}
-        />
-        <Canvas
-          pages={pages}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          setPages={setPages}
-          setSelectedText={setSelectedText}
-          selectedText={selectedText}
-        />
-      </E.edit_container>
+      {loading ? (
+        <div>로딩 중...</div>
+      ) : (
+        <E.edit_container>
+          <Toolbar
+            addPage={addPage}
+            deletePage={deletePage}
+            selectedText={selectedText}
+            addText={addText}
+            addImage={addImage}
+            updateTextStyle={updateTextStyle}
+            savePage={savePage}
+          />
+          <Canvas
+            pages={pages}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            setPages={setPages}
+            setSelectedText={setSelectedText}
+            selectedText={selectedText}
+          />
+        </E.edit_container>
+      )}
     </>
   );
 }
