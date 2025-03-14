@@ -74,7 +74,7 @@ function Canvas({
         <C.canvus onClick={handleClickOutside}>
             <C.pagecounter>
                 {pages.length > 0
-                    ? `${currentPage + 1} / ${pages.length}`
+                    ? `${currentPage} / ${pages.length}`
                     : "0 / 0"}
             </C.pagecounter>
 

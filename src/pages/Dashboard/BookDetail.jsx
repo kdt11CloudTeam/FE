@@ -46,22 +46,8 @@ function BookDetail() {
   // 페이지 삭제
   const deletePage = async () => {
     if (pages.length > 1) {
-      try {
-        const pageIdToDelete = pages[currentPage]?.pageId;
-        if (!currentPage) {
-          console.warn("삭제할 페이지가 없습니다.");
-          return;
-        }
-
-        await axiosInstance.delete(`/${bookId}/page/${currentPage}`);
-
-        const newPages = pages.filter((page) => page.pageId !== pageIdToDelete);
-        setPages(newPages);
-
-        setCurrentPage((prev) => (prev > 0 ? prev : 1));
-      } catch (error) {
-        console.error("페이지 삭제 중 오류:", error);
-      }
+      await axiosInstance.delete(`/${bookId}/page/${currentPage}`);
+      setCurrentPage(currentPage-1);
     } else {
       alert("최소 한 개의 페이지는 남아 있어야 합니다!");
     }
