@@ -12,11 +12,12 @@ function BookDetail() {
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedText, setSelectedText] = useState(null);
 
+  // 페이지 조회
   useEffect(async () => {
 
     const response = await axiosInstance.get(`/${bookId}/page/all`);
     setPages(response.data.data.pages);
-    setCurrentPage(response.data.data.pages.length);
+    setCurrentPage(response.data.data.pages[0]);
 
     if(response.data.data.pages === null){
         const response = await axiosInstance.post(`/${bookId}/page`);
