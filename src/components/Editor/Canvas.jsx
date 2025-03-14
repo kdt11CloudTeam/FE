@@ -95,12 +95,12 @@ function Canvas({
                 />
 
                 <C.page_container ref={pageContainerRef}>
-                    {pages.map((page, index) => (
+                    {pages.map((page, pageNumber) => (
                         <C.page
-                            key={page.pageId || `page-${index}`}
+                            key={page.pageId || `page-${pageNumber}`}
                             style={{
                                 display:
-                                    index === currentPage ? "block" : "none",
+                                    pageNumber === currentPage ? "block" : "none",
                                 backgroundColor: "#fff",
                             }}
                         >
