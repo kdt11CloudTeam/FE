@@ -17,10 +17,12 @@ function BookDetail() {
     try{
       const response = await axiosInstance.get(`/${bookId}/page/all`);
       setPages(response.data.pages);
-      setCurrentPage(pages.length);
+      setCurrentPage(response.data.pages);
     }catch(error){
       console.error("페이지 조회 중 오류:", error);
     }
+
+    console.log("조건문 확인" + pages.filter((page) => page.pageNumber === null));
 
     if(pages.filter((page) => page.pageNumber === null)){
       try {
