@@ -43,16 +43,8 @@ function BookDetail() {
   // 페이지 추가
   const addPage = async () => {
     try {
-      const response = await axiosInstance.post(`/${bookId}/page`);
-
-      const newPageId = response.data.pageId ?? pages.length;
-
-      setPages((prevPages) => [
-        ...prevPages,
-        { pageId: newPageId, elements: [] },
-      ]);
-
-      setCurrentPage(pages.length);
+      await axiosInstance.post(`/${bookId}/page`);
+      window.location.reload();
     } catch (error) {
       console.error("페이지 추가 중 오류:", error);
     }
