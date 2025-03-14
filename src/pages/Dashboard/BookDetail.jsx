@@ -62,7 +62,7 @@ function BookDetail() {
   const deletePage = async () => {
     if (pages.length > 1) {
       await axiosInstance.delete(`/${bookId}/page/${currentPage}`);
-      setCurrentPage(currentPage-1);
+      window.location.reload();
     } else {
       alert("최소 한 개의 페이지는 남아 있어야 합니다!");
     }
