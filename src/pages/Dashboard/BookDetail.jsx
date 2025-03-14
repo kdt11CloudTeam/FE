@@ -12,21 +12,28 @@ function BookDetail() {
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedText, setSelectedText] = useState(null);
 
-  useEffect(() => {
-    const createFirstPage = async () => {
+  useEffect(async () => {
+
+    try{
+      const response = await axiosInstance.get(`/${bookId}/page/all`);
+      setPages(response.data);
+      setCurrentPage(pages.length);
+    }catch(error){
+      console.error("페이지 조회 중 오류:", error);
+    }
+
+    if(!pages){
       try {
         const response = await axiosInstance.post(`/${bookId}/page`);
         const newPageId = response.data.pageId ?? 0;
-
+  
         setPages([{ pageId: newPageId, elements: [] }]);
-        setCurrentPage(0);
+        setCurrentPage(1);
       } catch (error) {
-        console.error("❌ 첫 페이지 생성 중 오류:", error);
+        console.error("첫 페이지 생성 중 오류:", error);
       }
-    };
-
-    createFirstPage();
-  }, [bookId]);
+    }
+  }, []);
 
   // 페이지 추가
   const addPage = async () => {
@@ -42,7 +49,7 @@ function BookDetail() {
 
       setCurrentPage(pages.length);
     } catch (error) {
-      console.error("❌ 페이지 추가 중 오류:", error);
+      console.error("페이지 추가 중 오류:", error);
     }
   };
 
@@ -61,7 +68,7 @@ function BookDetail() {
         const newPages = pages.filter((page) => page.pageId !== pageIdToDelete);
         setPages(newPages);
 
-        setCurrentPage((prev) => (prev > 0 ? prev - 1 : 0));
+        setCurrentPage((prev) => (prev > 0 ? prev : 1));
       } catch (error) {
         console.error("페이지 삭제 중 오류:", error);
       }
@@ -87,10 +94,10 @@ function BookDetail() {
         content: element.type === "text" ? element.text : element.src,
       }));
 
-      const response = await axiosInstance.post(`/${bookId}/page/${currentPage}`, elementDto);
+      const response = await axiosInstance.post(`/${bookId}/page/${currentPage}`, elements);
 
       console.log("페이지 저장 성공:", response.data);
-      alert("📌 페이지가 성공적으로 저장되었습니다!");
+      alert("페이지가 성공적으로 저장되었습니다!");
     } catch (error) {
       console.error("페이지 저장 중 오류:", error);
       alert("페이지 저장에 실패했습니다.");
