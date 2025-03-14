@@ -84,7 +84,7 @@ function Canvas({
                     src={leftarrow}
                     onClick={(e) => {
                         e.stopPropagation();
-                        if (currentPage > 0) {
+                        if (currentPage > pages[0].pageNumber) {
                             setCurrentPage(currentPage - 1);
                         }
                     }}
@@ -171,7 +171,7 @@ function Canvas({
                     src={rightarrow}
                     onClick={(e) => {
                         e.stopPropagation();
-                        if (currentPage < pages.length - 1) {
+                        if (currentPage < pages[pages.length-1].pageNumber) {
                             setCurrentPage(currentPage + 1);
                         }
                     }}
