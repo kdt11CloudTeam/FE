@@ -17,7 +17,7 @@ function BookDetail() {
 
     const response = await axiosInstance.get(`/${bookId}/page/all`);
     setPages(response.data.data.pages);
-    setCurrentPage(response.data.data.pages[0]);
+    setCurrentPage(response.data.data.pages[0].pageNumber);
 
     if(response.data.data.pages === null){
         const response = await axiosInstance.post(`/${bookId}/page`);
