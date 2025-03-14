@@ -14,7 +14,6 @@ function BookDetail() {
 
   // 페이지 조회
   useEffect(async () => {
-
     const response = await axiosInstance.get(`/${bookId}/page/all`);
     setPages(response.data.data.pages);
     setCurrentPage(response.data.data.pages[0].pageNumber);

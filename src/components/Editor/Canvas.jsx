@@ -89,8 +89,8 @@ function Canvas({
                         }
                     }}
                     style={{
-                        opacity: currentPage === pages[0].pageNumber ? 0.3 : 1,
-                        cursor: currentPage === pages[0].pageNumber ? "default" : "pointer",
+                        opacity: currentPage === `${pages[0].pageNumber}` ? 0.3 : 1,
+                        cursor: currentPage === `${pages[0].pageNumber}` ? "default" : "pointer",
                     }}
                 />
 
@@ -176,9 +176,9 @@ function Canvas({
                         }
                     }}
                     style={{
-                        opacity: currentPage >= pages[pages.length-1].pageNumber ? 0.3 : 1,
+                        opacity: currentPage >= `${pages[pages.length-1].pageNumber}` ? 0.3 : 1,
                         cursor:
-                            currentPage >= pages[pages.length-1].pageNumber
+                            currentPage >= `${pages[pages.length-1].pageNumber}`
                                 ? "default"
                                 : "pointer",
                     }}
