@@ -66,7 +66,6 @@ function BookDetail() {
       const pageData = pages[currentPage-1];
 
       const elements = pageData.elements.map((element) => ({
-        elementId: element.id,
         elementType: element.type === "text" ? "TEXT" : "IMAGE",
         xPosition: element.x ? element.x.toString() : "0",
         yPosition: element.y ? element.y.toString() : "0",
