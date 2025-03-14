@@ -176,9 +176,9 @@ function Canvas({
                         }
                     }}
                     style={{
-                        opacity: currentPage >= ages[pages.length-1].pageNumber ? 0.3 : 1,
+                        opacity: currentPage >= pages[pages.length-1].pageNumber ? 0.3 : 1,
                         cursor:
-                            currentPage >= ages[pages.length-1].pageNumber
+                            currentPage >= pages[pages.length-1].pageNumber
                                 ? "default"
                                 : "pointer",
                     }}
