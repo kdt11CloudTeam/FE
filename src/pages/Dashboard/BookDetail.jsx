@@ -14,27 +14,14 @@ function BookDetail() {
 
   useEffect(async () => {
 
-    try{
-      const response = await axiosInstance.get(`/${bookId}/page/all`);
-      console.log(response.data.data);
-      setPages(response.data.data.pages);
-      setCurrentPage(response.data.data.pages.length);
-    }catch(error){
-      console.error("페이지 조회 중 오류:", error);
-    }
+    const response = await axiosInstance.get(`/${bookId}/page/all`);
+    setPages(response.data.data.pages);
+    setCurrentPage(response.data.data.pages.length);
 
-    console.log("조건문 확인" + pages.filter((page) => page.pageNumber === null));
-
-    if(pages.filter((page) => page.pageNumber === null)){
-      try {
+    if(response.data.data.pages === null){
         const response = await axiosInstance.post(`/${bookId}/page`);
-        const newPageId = response.data.pageId ?? 0;
-  
-        setPages([{ pageId: newPageId, elements: [] }]);
-        setCurrentPage(1);
-      } catch (error) {
-        console.error("첫 페이지 생성 중 오류:", error);
-      }
+        setPages([{ pageId: response.data.data.pageId, pageNumber: response.data.data.pageNumber, elements: [] }]);
+        setCurrentPage(response.data.data.pageNumber);
     }
   }, []);
 
