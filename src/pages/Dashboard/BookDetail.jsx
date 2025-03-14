@@ -60,14 +60,10 @@ function BookDetail() {
     }
   };
 
+  // 페이지 저장
   const savePage = async () => {
     try {
-      if (!pages || pages.length === 0) {
-        console.warn("저장할 페이지가 없습니다.");
-        return;
-      }
-
-      const pageData = pages[currentPage];
+      const pageData = pages[currentPage-1];
 
       const elements = pageData.elements.map((element) => ({
         elementId: element.id,
@@ -91,13 +87,7 @@ function BookDetail() {
     setPages((prev) => {
       const newPages = [...prev];
 
-      // ✅ 현재 페이지가 존재하지 않으면 새로 추가
-      if (!newPages[currentPage]) {
-        newPages[currentPage] = { pageId: currentPage, elements: [] };
-      }
-
-      // ✅ 순차적인 ID 설정 (현재 페이지의 요소 개수 기반)
-      const newId = newPages[currentPage].elements.length;
+      const newId = newPages[currentPage-1].elements.length+1;
 
       const newElement = {
         id: newId,
@@ -111,9 +101,9 @@ function BookDetail() {
         fontFamily: "pretendard",
       };
 
-      newPages[currentPage] = {
-        ...newPages[currentPage],
-        elements: [...newPages[currentPage].elements, newElement],
+      newPages[currentPage-1] = {
+        ...newPages[currentPage-1],
+        elements: [...newPages[currentPage-1].elements, newElement],
       };
 
       return newPages;

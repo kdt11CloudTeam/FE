@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { Rnd } from "react-rnd";
 import * as C from "../../styles/Components/CanvusStyle";
 
@@ -15,18 +15,10 @@ function Canvas({
 }) {
     const pageContainerRef = useRef(null);
 
-    useEffect(() => {
-        console.log("📌 현재 페이지 Index:", currentPage);
-        console.log(
-            "📌 전체 페이지 리스트:",
-            pages.map((p) => p.pageId)
-        );
-    }, [currentPage, pages]);
-
     const handleTextChange = (id, newText) => {
         setPages((prev) =>
-            prev.map((page, index) =>
-                index === currentPage
+            prev.map((page) =>
+                page.pageNumber === currentPage
                     ? {
                           ...page,
                           elements: page.elements.map((element) =>
@@ -42,8 +34,8 @@ function Canvas({
 
     const handleFocus = (id) => {
         setPages((prev) => {
-            return prev.map((page, index) =>
-                index === currentPage
+            return prev.map((page) =>
+                page.pageNumber === currentPage
                     ? {
                           ...page,
                           elements: page.elements.map((element) =>
@@ -56,7 +48,7 @@ function Canvas({
             );
         });
 
-        // ✅ 선택된 텍스트 요소의 전체 객체 저장
+        // 선택된 텍스트 요소의 전체 객체 저장
         const selectedElement = pages[currentPage]?.elements.find(
             (element) => element.id === id
         );
@@ -67,7 +59,7 @@ function Canvas({
     };
 
     const handleClickOutside = () => {
-        setSelectedText(null); // ✅ 텍스트가 아닌 다른 곳 클릭 시 초기화
+        setSelectedText(null); // 텍스트가 아닌 다른 곳 클릭 시 초기화
     };
 
     return (
@@ -122,7 +114,7 @@ function Canvas({
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         if (element.type === "text") {
-                                            handleFocus(element.id); // ✅ `handleFocus` 적용
+                                            handleFocus(element.id);
                                         } else {
                                             setSelectedText(null);
                                         }
