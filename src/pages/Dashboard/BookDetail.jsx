@@ -16,13 +16,13 @@ function BookDetail() {
 
     try{
       const response = await axiosInstance.get(`/${bookId}/page/all`);
-      setPages(response.data);
+      setPages(response.data.pages);
       setCurrentPage(pages.length);
     }catch(error){
       console.error("페이지 조회 중 오류:", error);
     }
 
-    if(!pages){
+    if(pages.filter((page) => page.pageNumber === null)){
       try {
         const response = await axiosInstance.post(`/${bookId}/page`);
         const newPageId = response.data.pageId ?? 0;
