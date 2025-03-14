@@ -16,9 +16,9 @@ function BookDetail() {
 
     try{
       const response = await axiosInstance.get(`/${bookId}/page/all`);
-      console.log(response.data);
-      setPages(response.data.pages);
-      setCurrentPage(response.data.pages.length);
+      console.log(response.data.data);
+      setPages(response.data.data.pages);
+      setCurrentPage(response.data.data.pages.length);
     }catch(error){
       console.error("페이지 조회 중 오류:", error);
     }
